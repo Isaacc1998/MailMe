@@ -9,6 +9,7 @@ const { isProduction } = require("./config/keys");
 
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
+const debug = require("debug");
 
 const app = express();
 
