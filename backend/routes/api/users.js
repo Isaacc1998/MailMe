@@ -5,19 +5,37 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const { loginUser, restoreUser } = require("../../config/passport");
-const { isProduction } = require("../../config/keys");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 
+const { isProduction } = require("../../config/keys");
 /* GET users listing. */
-router.get("/", function (req, res, next) {
+// router.get("/", function (req, res, next) {
+//   res.json({
+//     message: "GET /api/users",
+//   });
+// });
+
+router.get("/current", restoreUser, (req, res) => {
+  if (!isProduction) {
+    // In development, allow React server to gain access to the CSRF token
+    // whenever the current user information is first loaded into the
+    // React application
+    const csrfToken = req.csrfToken();
+    res.cookie("CSRF-TOKEN", csrfToken);
+    console.log(csrfToken, "csrftoken in /current");
+  }
+  if (!req.user) return res.json(null);
   res.json({
-    message: "GET /api/users",
+    _id: req.user._id,
+    username: req.user.username,
+    email: req.user.email,
   });
 });
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   // Your code will go here
+  console.log("hitting /register");
   const user = await User.findOne({
     $or: [{ email: req.body.email }, { username: req.body.username }],
   });
@@ -68,22 +86,6 @@ router.post("/login", validateLoginInput, async (req, res, next) => {
     }
     return res.json(await loginUser(user));
   })(req, res, next);
-});
-
-router.get("/current", restoreUser, (req, res) => {
-  if (!isProduction) {
-    // In development, allow React server to gain access to the CSRF token
-    // whenever the current user information is first loaded into the
-    // React application
-    const csrfToken = req.csrfToken();
-    res.cookie("CSRF-TOKEN", csrfToken);
-  }
-  if (!req.user) return res.json(null);
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    email: req.user.email,
-  });
 });
 
 module.exports = router;
