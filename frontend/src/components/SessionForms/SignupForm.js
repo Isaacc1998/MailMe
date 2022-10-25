@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./SignupForm.css";
+// import "./SignupForm.css";
 import { signup, clearSessionErrors } from "../../store/session";
 
 function SingupForm() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [email, setEmail] = useState(
+    (Math.random() + 1).toString(36).substring(7) + "@fdsdf.dd"
+  );
+  const [username, setUsername] = useState(
+    (Math.random() + 1).toString(36).substring(7)
+  );
+  const [password, setPassword] = useState("asdfasdf");
+  const [password2, setPassword2] = useState("asdfasdf");
   const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
 

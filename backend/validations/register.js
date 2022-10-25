@@ -1,6 +1,6 @@
 const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
-
+console.log("hitting validateRegisterInput");
 const validateRegisterInput = [
   check("email")
     .exists({ checkFalsy: true })
@@ -16,5 +16,6 @@ const validateRegisterInput = [
     .withMessage("Password must be between 6 and 30 characters"),
   handleValidationErrors,
 ];
+console.log("after validationREgisterInput");
 
 module.exports = validateRegisterInput;

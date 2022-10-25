@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./LoginForm.css";
+// import "./LoginForm.css";
 import { login, clearSessionErrors } from "../../store/session";
 
 function LoginForm() {
@@ -14,6 +14,7 @@ function LoginForm() {
       dispatch(clearSessionErrors());
     };
   }, [dispatch]);
+
   const update = (field) => {
     const setState = field === "email" ? setEmail : setPassword;
     return (e) => setState(e.currentTarget.value);
