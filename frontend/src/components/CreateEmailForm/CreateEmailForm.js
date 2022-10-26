@@ -1,13 +1,21 @@
 import { FormLabel, Input, Button, Select } from "@chakra-ui/react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 function CreateEmailForm({ onClose }) {
-  const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const dispatch = useDispatch();
+
   const createEmailFormSubmit = (e) => {
     e.preventDefault();
     console.log("email created");
     // add onClose later
+    // let params = {
+    //     mailingListId: // this would be the id ,
+    //     title,
+    //     content: body
+    // }
+    // dispatch(createPost(params))
   };
   return (
     <>
@@ -19,14 +27,14 @@ function CreateEmailForm({ onClose }) {
             <option>Single Mail List</option>
           </Select>
         </FormLabel>
-        <FormLabel>
+        {/* <FormLabel>
           <Input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
             placeholder="Enter Emails"
           />
-        </FormLabel>
+        </FormLabel> */}
         <FormLabel>
           <Input
             type="text"
@@ -37,10 +45,14 @@ function CreateEmailForm({ onClose }) {
         </FormLabel>
         <FormLabel>
           <Input
-            type="text"
+            type="textarea"
             value={body}
             onChange={(e) => setBody(e.currentTarget.value)}
             placeholder="Body"
+            h="300px"
+            _placeholder={{
+              textAlign: "center",
+            }}
           />
         </FormLabel>
         <Button type="submit">Create Mail</Button>
