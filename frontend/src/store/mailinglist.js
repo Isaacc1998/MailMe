@@ -56,6 +56,7 @@ export const createMailingList = (params) => async (dispatch) => {
 
   const data2 = await res.clone();
   const data = await res.json();
+  console.log(data, data2, "data and data2");
   // return dispatch(createList(data));
   dispatch(receiveLists(data));
   return data2;
