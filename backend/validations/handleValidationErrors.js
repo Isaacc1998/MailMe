@@ -3,7 +3,6 @@ const { validationResult } = require("express-validator");
 const handleValidationErrors = (req, res, next) => {
   console.log(req);
   const validationErrors = validationResult(req);
-
   if (!validationErrors.isEmpty()) {
     const errorFormatter = ({ msg }) => msg;
     const errors = validationErrors.formatWith(errorFormatter).mapped();
