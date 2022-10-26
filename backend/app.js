@@ -14,9 +14,7 @@ require("./config/passport");
 
 const passport = require("passport");
 
-
 const { isProduction } = require("./config/keys");
-
 
 const app = express();
 
@@ -40,7 +38,6 @@ app.use(
     },
   })
 );
-
 
 const mailinglistsRouter = require("./routes/api/mailinglists");
 const usersRouter = require("./routes/api/users");
