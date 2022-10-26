@@ -20,14 +20,6 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoad(true));
   }, [dispatch]);
 
-  const logoutUser = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    return history.push("/");
-  };
-
-  <button onClick={logoutUser}>Logout</button>;
-
   return (
     load && (
       <>
@@ -39,7 +31,6 @@ function App() {
             </>
           ) : (
             <>
-              <button onClick={logoutUser}>Logout</button>
               <Route exact path="/home" component={HomePage} />
             </>
           )}
