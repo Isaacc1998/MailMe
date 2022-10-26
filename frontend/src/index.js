@@ -5,8 +5,14 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import configureStore from "./store/store";
+import * as sessionActions from "./store/session";
+import * as mailinglistActions from "./store/mailinglist";
 import { ChakraProvider } from "@chakra-ui/react";
 let store = configureStore({});
+
+window.store = store;
+window.sessionActions = sessionActions;
+window.mailinglistActions = mailinglistActions;
 
 function Root() {
   return (
