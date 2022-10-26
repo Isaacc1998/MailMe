@@ -1,0 +1,30 @@
+.home-container {
+  display: flex;
+  width: 99vw;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.left-home-container {
+  width: 30vw;
+  height: 100vh;
+  border: 1px solid black;
+}
+.right-home-container {
+  width: 69vw;
+  height: 100vh;
+}
+.top-right-home-container {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  height: 8vh;
+}
+
+.bottom-right-home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: 92vh;
+}

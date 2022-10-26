@@ -1,17 +1,25 @@
+import {
+  Button,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 // import "./SignupForm.css";
 import { signup, clearSessionErrors } from "../../store/session";
 
-function SingupForm() {
+function SignupForm({ onClose }) {
   const [email, setEmail] = useState(
-    (Math.random() + 1).toString(36).substring(7) + "@fdsdf.dd"
+    (Math.random() + 1).toString(36).substring(7) + "@asd.io"
   );
   const [username, setUsername] = useState(
     (Math.random() + 1).toString(36).substring(7)
   );
-  const [password, setPassword] = useState("asdfasdf");
-  const [password2, setPassword2] = useState("asdfasdf");
+  const [password, setPassword] = useState("password");
+  const [password2, setPassword2] = useState("password");
   const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
 
@@ -48,60 +56,80 @@ function SingupForm() {
       username,
       password,
     };
-    dispatch(signup(user));
+    dispatch(signup(user)).then((e) => {
+      console.log(e, "this is e");
+      console.log(e.errors === undefined);
+      // console.log(e.errors.length);
+      if (e.errors === undefined) onClose(); // if there is NO errors, close it
+    });
   };
+  console.log(errors, "this errors");
   return (
-    <form className="session-form" onSubmit={usernameSubmit}>
-      <h2>Sign up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input
-          type="text"
-          value={email}
-          onChange={update("email")}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input
-          type="text"
-          value={username}
-          onChange={update("username")}
-          placeholder="Username"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input
-          type="Password"
-          value={password}
-          onChange={update("password")}
-          placeholder="Password"
-        />
-      </label>
-      <div className="errors">
-        {password !== password2 && "Confirm Password field must match"}
-      </div>
-      <label>
-        <span>Confirm Password</span>
-        <input
-          type="password"
-          value={password2}
-          onChange={update("password2")}
-          placeholder="Confirm Password"
-        />
-      </label>
-      <input
-        type="submit"
-        value="Sign up"
-        disabled={!email || !username || !password || password !== password2}
-      />
-    </form>
+    <>
+      <form className="signup-form" onSubmit={usernameSubmit}>
+        {JSON.stringify(errors)}
+        <h1>Sign Up</h1>
+        <FormLabel>
+          <span>Email</span>
+          <Input
+            type="text"
+            value={email}
+            onChange={update("email")}
+            placeholder="Email"
+            isInvalid={errors?.email}
+          />
+
+          <Text color="red">{errors?.email}</Text>
+        </FormLabel>
+
+        <FormLabel>
+          <span>Username</span>
+          <Input
+            type="text"
+            value={username}
+            onChange={update("username")}
+            placeholder="Username"
+            isInvalid={errors?.username}
+          />
+          <div className="errors">{errors?.username}</div>
+        </FormLabel>
+
+        <FormLabel>
+          <span>Password</span>
+          <Input
+            type="Password"
+            value={password}
+            onChange={update("password")}
+            placeholder="Password"
+            isInvalid={errors?.password}
+          />
+          <Text color="red">{errors?.password}</Text>
+        </FormLabel>
+
+        <FormLabel>
+          <span>Confirm Password</span>
+          <Input
+            type="password"
+            value={password2}
+            onChange={update("password2")}
+            placeholder="Confirm Password"
+            isInvalid={
+              password !== password2 && "Confirm Password field must match"
+            }
+          />
+          <Text color="red">
+            {password !== password2 && "Confirm Password field must match"}
+          </Text>
+        </FormLabel>
+        <Button
+          type="submit"
+          disabled={!email || !username || !password || password !== password2}
+        >
+          Sign up
+        </Button>
+      </form>
+    </>
   );
 }
 
-export default SingupForm;
+export default SignupForm;
