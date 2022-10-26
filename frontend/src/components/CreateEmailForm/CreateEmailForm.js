@@ -1,12 +1,13 @@
 import { FormLabel, Input, Button, Select } from "@chakra-ui/react";
 import { useState } from "react";
-function CreateEmailForm() {
+function CreateEmailForm({ onClose }) {
   const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const createEmailFormSubmit = (e) => {
     e.preventDefault();
     console.log("email created");
+    // add onClose later
   };
   return (
     <>

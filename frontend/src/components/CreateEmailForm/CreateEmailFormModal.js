@@ -9,7 +9,7 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
-import CreateEmailForm from "./";
+import CreateEmailForm from "./CreateEmailForm";
 function CreateEmailFormModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (

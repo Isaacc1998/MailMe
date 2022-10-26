@@ -23,8 +23,9 @@
 }
 
 .bottom-right-home-container {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
+  /* flex-direction: column; */
   align-items: center;
   border: 1px solid black;
   height: 92vh;
