@@ -1,7 +1,8 @@
 .navbar-container {
   height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  position: fixed;
   border: 1px solid black;
+  z-index: 100;
+  background-color: aqua;
 }

@@ -67,7 +67,7 @@ function SignupForm({ onClose }) {
   return (
     <>
       <form className="signup-form" onSubmit={usernameSubmit}>
-        {JSON.stringify(errors)}
+        {/* {JSON.stringify(errors)} */}
         <h1>Sign Up</h1>
         <FormLabel>
           <span>Email</span>
@@ -91,7 +91,7 @@ function SignupForm({ onClose }) {
             placeholder="Username"
             isInvalid={errors?.username}
           />
-          <div className="errors">{errors?.username}</div>
+          <Text color="red">{errors?.username}</Text>
         </FormLabel>
 
         <FormLabel>
