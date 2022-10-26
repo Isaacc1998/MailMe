@@ -1,4 +1,4 @@
-import { Switch, useHistory } from "react-router-dom";
+import { Switch } from "react-router-dom";
 // import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import { Route, Redirect } from "react-router-dom";
 
@@ -14,7 +14,6 @@ function App() {
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
   const hasUser = useSelector((state) => !!state.session.user);
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoad(true));
@@ -23,17 +22,20 @@ function App() {
   return (
     load && (
       <>
+        {!hasUser ? (
+          <>
+            <Redirect to="/login" />
+          </>
+        ) : (
+          <>
+            <Redirect to="/" />
+          </>
+        )}
         <Switch>
-          <Route exact path="/" component={Splash} />
-          {!hasUser ? (
-            <>
-              <Route exact path="/login" component={LoginForm} />
-            </>
-          ) : (
-            <>
-              <Route exact path="/home" component={HomePage} />
-            </>
-          )}
+          {/* <Route exact path="/login" component={Splash} /> */}
+
+          <Route exact path="/login" component={Splash} />
+          <Route exact path="/" component={HomePage} />
         </Switch>
       </>
     )

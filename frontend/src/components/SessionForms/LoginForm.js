@@ -66,7 +66,7 @@ function LoginForm() {
           <Input type="submit" value="Log In" disabled={!email || !password} />
         </form>
       ) : (
-        <Redirect to="/home">
+        <Redirect to="/">
           <HomePage />
         </Redirect>
       )}

@@ -14,7 +14,10 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Button,
+  Box,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 function HomePage() {
   const dispatch = useDispatch();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
@@ -40,7 +43,7 @@ function HomePage() {
           <div className="bottom-right-home-container">
             {/* <div>Bottom Right side container &nbsp;</div>
             <div>Content of Mailing List</div> */}
-            <div>
+            <div className="inner-bottom-right">
               <TableContainer>
                 <Table variant="striped" colorScheme="teal">
                   <TableCaption>Isaac</TableCaption>
@@ -48,52 +51,32 @@ function HomePage() {
                     <Tr>
                       <Th>Mailing List Name</Th>
                       <Th># of Emails</Th>
-                      {/* <Th isNumeric># of Emails</Th> */}
+                      <Th>Emails sent out</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
                     {mailingLists.length > 0 &&
                       mailingLists.map((list) => {
                         return (
-                          // name of mailing, number of emails contained,
-                          // <div
-                          //   style={{
-                          //     border: "1px solid black",
-                          //     margin: "5px",
-                          //     padding: "5px",
-                          //   }}
-                          // >
                           <Tr>
-                            <Td>{list.name}</Td>
+                            <Td>
+                              <Box
+                                as={Link}
+                                to={`${list.name}`}
+                                _hover={{
+                                  color: "red",
+                                }}
+                              >
+                                Go to {list.name}
+                              </Box>
+                            </Td>
 
-                            <Td>emails: {list.emails.length}</Td>
+                            <Td>{list.emails.length}</Td>
+                            <Td>10</Td>
                           </Tr>
-                          // </div>
                         );
                       })}
-                    {/* <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
-      </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr> */}
                   </Tbody>
-                  {/* <Tfoot>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Tfoot> */}
                 </Table>
               </TableContainer>
             </div>
