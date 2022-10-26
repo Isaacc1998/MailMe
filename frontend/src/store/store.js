@@ -1,10 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
+import mailinglistReducer from "./mailinglist";
+import postReducer from "./posts";
 import { sessionErrorsReducer } from "./session";
 
 const rootReducer = combineReducers({
   session,
+  mailingLists: mailinglistReducer,
+  posts: postReducer,
   errors: sessionErrorsReducer,
 });
 
