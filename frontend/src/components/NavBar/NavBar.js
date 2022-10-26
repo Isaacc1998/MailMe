@@ -10,7 +10,7 @@ function NavBar() {
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
-    return history.push("/");
+    return history.push("/login");
   };
 
   return (
