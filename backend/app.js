@@ -7,11 +7,16 @@ const csurf = require("csurf");
 
 require("./models/User");
 
+require("./models/Mailinglist");
+require("./models/Post");
+
 require("./config/passport");
 
 const passport = require("passport");
 
+
 const { isProduction } = require("./config/keys");
+
 
 const app = express();
 
@@ -36,10 +41,12 @@ app.use(
   })
 );
 
-const usersRouter = require("./routes/api/users");
 
+const mailinglistsRouter = require("./routes/api/mailinglists");
+const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 
+app.use("/api/mailinglists", mailinglistsRouter);
 app.use("/api/users", usersRouter);
 
 app.use("/api/csrf", csrfRouter);
