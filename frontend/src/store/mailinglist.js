@@ -58,7 +58,7 @@ export const createMailingList = (params) => async (dispatch) => {
   const data = await res.json();
   console.log(data, data2, "data and data2");
   // return dispatch(createList(data));
-  dispatch(receiveLists(data));
+  dispatch(getUserMailingLists());
   return data2;
 
   //* in frontend:
@@ -68,23 +68,27 @@ export const createMailingList = (params) => async (dispatch) => {
 };
 
 export const updateMailingList = (params) => async (dispatch) => {
-  const { mailingListId, name, emails } = params;
-  const res = await jwtFetch(`/api/mailinglists/${mailingListId}`, {
+  const { mailinglistId, name, emails } = params;
+  const res = await jwtFetch(`/api/mailinglists/${mailinglistId}`, {
     method: "PUT",
     body: JSON.stringify({
       name: name,
       emails: emails,
     }),
   });
+  const data2 = await res.clone();
   const data = await res.json();
-  return dispatch(updateList(data));
+  dispatch(getUserMailingLists());
+  return data2;
 };
 
 export const removeMailingList = (mailingListId) => async (dispatch) => {
   const res = await jwtFetch(`/api/mailinglists/${mailingListId}`, {
     method: "DELETE",
   });
-  return dispatch(removeList(mailingListId));
+  dispatch(getUserMailingLists());
+  // return dispatch(removeList(mailingListId));
+  return;
 };
 
 const mailinglistReducer = (
@@ -98,9 +102,6 @@ const mailinglistReducer = (
     case RECEIVE_LIST:
       // is mailing list have a field of arrays (emails)
       return { ...state, currentMailingList: action.list };
-
-    case REMOVE_LIST:
-
     default:
       return state;
   }
