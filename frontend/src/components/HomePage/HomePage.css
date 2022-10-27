@@ -2,23 +2,35 @@
   display: flex;
   width: 99vw;
   height: 100vh;
-  padding-top: 100px;
+  /* padding-top: 100px; */
+  /* border-left: 1px solid black; */
 }
 
 .left-home-container {
   width: 30vw;
+  /* this  */
   height: 100vh;
+  position: fixed;
+  padding-top: 100px;
+  border-right: 1px solid black;
 }
 .right-home-container {
   width: 69vw;
+  margin-left: 30vw;
+  /* this  */
   height: 100vh;
+  padding-top: 100px;
 }
 
 .bottom-right-home-container {
   /* display: flex; */
   justify-content: center;
   /* flex-direction: column; */
+
   align-items: center;
-  border-left: 1px solid black;
   height: 92vh;
+}
+
+.inner-bottom-right {
+  padding-bottom: 100px;
 }

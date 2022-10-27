@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../store/posts";
 import ViewHistoryModel from "./ViewHistoryModal";
+
 function CreateEmailForm({ onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -24,8 +25,10 @@ function CreateEmailForm({ onClose }) {
   //   // }
   //   // dispatch(createPost(params))
   // };
+
   // ** SHAWNS
   // const mailingLists = useSelector((state) => state.mailingLists.lists);
+
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -61,6 +64,7 @@ function CreateEmailForm({ onClose }) {
               })}
           </Select>
         </FormLabel> */}
+
         {/* <FormLabel>
           <Input
             type="text"
@@ -78,8 +82,7 @@ function CreateEmailForm({ onClose }) {
           />
         </FormLabel>
         <FormLabel>
-          <Input
-            type="textarea"
+          <Textarea
             value={body}
             onChange={(e) => setBody(e.currentTarget.value)}
             placeholder="Body"

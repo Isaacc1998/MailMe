@@ -9,10 +9,20 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { emptyCurrList } from "../../store/mailinglist";
 
 const MailingListSummary = ({ mailingLists }) => {
+  const dispatch = useDispatch();
   console.log(mailingLists, "this is mailingLists");
+  useEffect(() => {
+    // dispatch(emptyCurrList());
+    dispatch({
+      type: "mailinglist/EMPTY_CURR_LIST",
+    });
+  }, []);
   return (
     <>
       <TableContainer>
@@ -37,8 +47,9 @@ const MailingListSummary = ({ mailingLists }) => {
                         _hover={{
                           color: "red",
                         }}
+                        fontSize="20px"
                       >
-                        Go to {list.name}
+                        {list.name}
                       </Box>
                     </Td>
 
