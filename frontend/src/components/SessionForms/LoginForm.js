@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-// import "./LoginForm.css";
+import "./LoginForm.css";
 import {
   FormControl,
   FormLabel,
@@ -10,6 +10,7 @@ import {
   Input,
   Button,
   Center,
+  Text,
 } from "@chakra-ui/react";
 
 import { login, clearSessionErrors } from "../../store/session";
@@ -42,7 +43,9 @@ function LoginForm() {
     <>
       {!hasUser ? (
         <form className="login-form" onSubmit={handleSubmit}>
-          <h2>Log In</h2>
+          <Text fontSize="4xl" as="b">
+            Log In
+          </Text>
           <div className="errors">{errors?.email}</div>
           <label>
             <span>Email</span>
@@ -62,8 +65,14 @@ function LoginForm() {
               onChange={update("password")}
               placeholder="Password"
             />
+            <div style={{ height: 15 }}></div>
           </label>
-          <Input type="submit" value="Log In" disabled={!email || !password} />
+          <Input
+            className="login-button"
+            type="submit"
+            value="Log In"
+            disabled={!email || !password}
+          />
         </form>
       ) : (
         <Redirect to="/">
