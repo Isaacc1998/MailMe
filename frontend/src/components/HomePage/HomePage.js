@@ -19,12 +19,14 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
-import { Link, Route, useHistory } from "react-router-dom";
+import { Link, Route, useHistory, useLocation } from "react-router-dom";
 import MailingListSummary from "./MailingListSummary";
 import OneMailingList from "./OneMailingList";
 import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
+import RecentPosts from "../RecentPosts/RecentPosts";
 function HomePage() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
   useEffect(() => {
     dispatch(getPosts());
@@ -38,8 +40,11 @@ function HomePage() {
       <NavBar />
       <div className="home-container">
         <div className="left-home-container">
-          Left side container
-          <p>Mailing List goes here</p>
+          {location.pathname !== "/" ? (
+            <MailingListSummary mailingLists={mailingLists} />
+          ) : (
+            <RecentPosts />
+          )}
         </div>
         <div className="right-home-container">
           <div className="bottom-right-home-container">

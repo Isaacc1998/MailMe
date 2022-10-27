@@ -1,5 +1,5 @@
 import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMailingList } from "../../store/mailinglist";
 function CreateNewMailingList({ onClose }) {
@@ -7,6 +7,7 @@ function CreateNewMailingList({ onClose }) {
   const [emails, setEmails] = useState("");
   const dispatch = useDispatch();
   const currentUserId = useSelector((state) => state.session.user._id);
+  const ref = useRef(null);
 
   const createMailingListFormSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +31,10 @@ function CreateNewMailingList({ onClose }) {
     // }
     // dispatch(createPost(params))
   };
+  useEffect(() => {
+    console.log(ref.current, "this is current");
+    ref.current.focus();
+  }, []);
   return (
     <>
       <form
@@ -38,6 +43,7 @@ function CreateNewMailingList({ onClose }) {
       >
         <FormLabel>
           <Input
+            ref={ref}
             type="text"
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}
