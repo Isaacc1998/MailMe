@@ -2,11 +2,15 @@ import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import "./NavBar.css";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
+  const currentMailingList = useSelector(
+    (state) => state.mailingLists.currentMailingList
+  );
+  const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
   const logoutUser = (e) => {
@@ -18,9 +22,9 @@ function NavBar() {
   return (
     <>
       <div className="navbar-container">
-        This is from navBar
         <Button onClick={logoutUser}>Logout</Button>
         <div className="top-right-home-container">
+          {currentUser && currentUser.username}
           <Box>
             <Button
               mr={5}
@@ -38,8 +42,11 @@ function NavBar() {
               <ArrowForwardIcon fontSize={25} />
             </Button>
           </Box>
-          Top Right side container
-          <div>Display user email</div>
+          <Box sx={{ width: "428px", height: "60px", textAlign: "center" }}>
+            <Text fontWeight={700} fontSize="3xl">
+              {currentMailingList && currentMailingList.name}
+            </Text>
+          </Box>
           <Box>
             {/* <CreateEmailFormModal /> */}
             <CreateNewMailingListModal />

@@ -1,11 +1,18 @@
-import { FormLabel, Input, Button, Select } from "@chakra-ui/react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import jwtFetch from "../../store/jwt";
+
+import { useEffect } from "react";
 function CreateEmailForm({ onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const dispatch = useDispatch();
-
+  const currentMailingList = useSelector(
+    (state) => state.mailingLists.currentMailingList
+  );
+  // console.log(currentMailingList, " this is current mailing List");
   const createEmailFormSubmit = (e) => {
     e.preventDefault();
     console.log("email created");
@@ -21,36 +28,34 @@ function CreateEmailForm({ onClose }) {
   // const [clickedList, setClickedList] = useState("")
   // const mailingLists = useSelector((state) => state.mailingLists.lists);
 
-  //   const handleSend = async () => {
-  //     let title = emailTitle
-  //     let addresses = clickedList
-  //     let text = body
+  // const handleSend = async () => {
+  //   let title = title;
+  //   let addresses = clickedList;
+  //   let text = body;
 
-  //     try {
-  //       await jwtFetch("/api/mail/sendmail", {
-  //         method: "POST",
-  //         body: JSON.stringify({text, addresses, title})
-  //       })
-  //     } catch (errors) {
-  //       console.log(errors)
-  //     }
+  //   try {
+  //     await jwtFetch("/api/mail/sendmail", {
+  //       method: "POST",
+  //       body: JSON.stringify({ text, addresses, title }),
+  //     });
+  //   } catch (errors) {
+  //     console.log(errors);
   //   }
+  // };
 
   //  <Select  onChange={(e) => setClickedList(e.target.value)} placeholder="Choose mail list">
   // {mailingLists && mailingLists.map((list) => {
   //   return <option value={list.emails}>{list.name}</option>
   // })}
   //** */ SHAWNS
+
   return (
     <>
       <form className="create-email-form" onSubmit={createEmailFormSubmit}>
-        <FormLabel>Create Email</FormLabel>
         <FormLabel>
-          <Select placeholder="Choose mail list">
-            <option>Single Mail List</option>
-            <option>Single Mail List</option>
-          </Select>
+          Create Email to {currentMailingList.name} subscribers
         </FormLabel>
+        <FormLabel></FormLabel>
         {/* <FormLabel>
           <Input
             type="text"
@@ -68,8 +73,7 @@ function CreateEmailForm({ onClose }) {
           />
         </FormLabel>
         <FormLabel>
-          <Input
-            type="textarea"
+          <Textarea
             value={body}
             onChange={(e) => setBody(e.currentTarget.value)}
             placeholder="Body"

@@ -14,7 +14,9 @@ function CreateEmailFormModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Send Email</Button>
+      <Button colorScheme="blue" onClick={onOpen}>
+        Send Email
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
