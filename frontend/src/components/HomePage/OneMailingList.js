@@ -5,17 +5,20 @@ import { useParams } from "react-router-dom";
 import { getMailingList } from "../../store/mailinglist";
 import {
   Box,
+  Spacer,
   Table,
   TableCaption,
   TableContainer,
   Tbody,
   Td,
+  Tfoot,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import CreateEmailFormModal from "../CreateEmailForm/CreateEmailFormModal";
+import AddEmailToList from "../AddEmailToList/AddEmailToList";
 
 const OneMailingList = () => {
   const [loading, setLoading] = useState(true);
@@ -35,10 +38,9 @@ const OneMailingList = () => {
   if (loading) return <div></div>;
   return (
     <div>
-      {!loading && currentMailingList && JSON.stringify(currentMailingList)}
-      <TableContainer>
+      <TableContainer mb="50px">
         <Table variant="striped" colorScheme="teal">
-          <TableCaption>Isaac</TableCaption>
+          {/* <TableCaption>{currentMailingList.name}</TableCaption> */}
           <Thead>
             <Tr>
               <Th>Email Name</Th>
@@ -50,14 +52,18 @@ const OneMailingList = () => {
             {currentMailingList.emails.map((mail) => {
               return (
                 <Tr>
-                  <Td>{mail}</Td>
+                  <Td fontSize="20px">{mail}</Td>
                 </Tr>
               );
             })}
           </Tbody>
         </Table>
       </TableContainer>
-      <CreateEmailFormModal />
+      <Box textAlign="center">
+        <AddEmailToList />
+        <Spacer m={5} />
+        <CreateEmailFormModal />
+      </Box>
     </div>
   );
 };

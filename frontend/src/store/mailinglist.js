@@ -2,6 +2,7 @@ import jwtFetch from "./jwt";
 
 const RECEIVE_LISTS = "mailinglist/RECEIVE_LISTS";
 const RECEIVE_LIST = "mailinglist/RECEIVE_LIST";
+const EMPTY_CURR_LIST = "mailinglist/EMPTY_CURR_LIST";
 const CREATE_LIST = "mailinglist/CREATE_LIST";
 const UPDATE_LIST = "mailinglist/UPDATE_LIST";
 const REMOVE_LIST = "mailinglist/REMOVE_LIST";
@@ -14,6 +15,10 @@ const receiveLists = (lists) => ({
 const receiveList = (list) => ({
   type: RECEIVE_LIST,
   list,
+});
+
+export const emptyCurrList = () => ({
+  type: EMPTY_CURR_LIST,
 });
 
 const createList = (list) => ({
@@ -81,6 +86,8 @@ export const updateMailingList = (params) => async (dispatch) => {
   const data2 = await res.clone();
   const data = await res.json();
   dispatch(getUserMailingLists());
+  dispatch(getMailingList(mailinglistId));
+
   return data2;
 };
 
@@ -104,6 +111,8 @@ const mailinglistReducer = (
     case RECEIVE_LIST:
       // is mailing list have a field of arrays (emails)
       return { ...state, currentMailingList: action.list };
+    case EMPTY_CURR_LIST:
+      return { ...state, currentMailingList: null };
     default:
       return state;
   }
