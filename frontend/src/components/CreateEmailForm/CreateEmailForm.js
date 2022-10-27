@@ -1,4 +1,4 @@
-import { FormLabel, Input, Button, Select } from "@chakra-ui/react";
+import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
 import jwtFetch from "../../store/jwt";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -28,7 +28,6 @@ function CreateEmailForm({ onClose }) {
 
   // ** SHAWNS
   // const mailingLists = useSelector((state) => state.mailingLists.lists);
-
 
   const handleSend = async (e) => {
     e.preventDefault();
