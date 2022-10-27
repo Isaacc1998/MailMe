@@ -11,15 +11,20 @@
   /* this  */
   height: 100vh;
   position: fixed;
-  padding-top: 100px;
+  overflow-y: scroll;
+  max-height: 100%;
   border-right: 1px solid black;
+  padding: 20px;
+  padding-top: 140px;
 }
 .right-home-container {
   width: 69vw;
   margin-left: 30vw;
   /* this  */
   height: 100vh;
-  padding-top: 100px;
+  padding: 20px;
+
+  padding-top: 140px;
 }
 
 .bottom-right-home-container {

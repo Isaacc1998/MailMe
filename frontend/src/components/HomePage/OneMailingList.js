@@ -5,12 +5,14 @@ import { useParams } from "react-router-dom";
 import { getMailingList } from "../../store/mailinglist";
 import {
   Box,
+  Heading,
   Spacer,
   Table,
   TableCaption,
   TableContainer,
   Tbody,
   Td,
+  Text,
   Tfoot,
   Th,
   Thead,
@@ -38,6 +40,13 @@ const OneMailingList = () => {
   if (loading) return <div></div>;
   return (
     <div>
+      <Heading fontSize={30} m={5} textAlign="left">
+        List of subscribers for "
+        <Text sx={{ display: "inline", fontWeight: 700 }} color="red">
+          {currentMailingList.name}
+        </Text>
+        "
+      </Heading>
       <TableContainer mb="50px">
         <Table variant="striped" colorScheme="teal">
           {/* <TableCaption>{currentMailingList.name}</TableCaption> */}
@@ -49,13 +58,14 @@ const OneMailingList = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {currentMailingList.emails.map((mail) => {
-              return (
-                <Tr>
-                  <Td fontSize="20px">{mail}</Td>
-                </Tr>
-              );
-            })}
+            {currentMailingList &&
+              currentMailingList.emails.map((mail) => {
+                return (
+                  <Tr>
+                    <Td fontSize="20px">{mail}</Td>
+                  </Tr>
+                );
+              })}
           </Tbody>
         </Table>
       </TableContainer>

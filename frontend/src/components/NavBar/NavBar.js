@@ -5,6 +5,8 @@ import "./NavBar.css";
 import { Box, Button, Text } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
+import MailMeLogo from "./MailMeLogo";
+import SignoutMenu from "./SignoutMenu";
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const currentMailingList = useSelector(
@@ -13,18 +15,19 @@ function NavBar() {
   const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  const logoutUser = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    return history.push("/login");
-  };
 
   return (
     <>
       <div className="navbar-container">
-        <Button onClick={logoutUser}>Logout</Button>
+        <Box sx={{ width: "100%", display: "flex" }}>
+          <Box ml="auto" pr="70px" mt={5}>
+            <SignoutMenu />
+          </Box>
+        </Box>
         <div className="top-right-home-container">
-          {currentUser && currentUser.username}
+          <Link to="/">
+            <MailMeLogo />
+          </Link>
           <Box>
             <Button
               mr={5}
@@ -44,7 +47,7 @@ function NavBar() {
           </Box>
           <Box sx={{ width: "428px", height: "60px", textAlign: "center" }}>
             <Text fontWeight={700} fontSize="3xl">
-              {currentMailingList && currentMailingList.name}
+              {/* {currentMailingList && currentMailingList.name} */}
             </Text>
           </Box>
           <Box>

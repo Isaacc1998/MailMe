@@ -1,5 +1,5 @@
 import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import jwtFetch from "../../store/jwt";
 import {
@@ -12,6 +12,7 @@ function ButtonForAddEmail({ onClose }) {
   const currentMailingList = useSelector(
     (state) => state.mailingLists.currentMailingList
   );
+  const ref = useRef(null);
   // console.log(currentMailingList, " this is current mailing List");
   const addSubscriberSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +38,11 @@ function ButtonForAddEmail({ onClose }) {
       });
   };
 
+  useEffect(() => {
+    ref.current.focus();
+    console.log(ref.current, "LOOK ME MA");
+  }, []);
+
   return (
     <>
       <form className="create-email-form" onSubmit={addSubscriberSubmit}>
@@ -52,10 +58,12 @@ function ButtonForAddEmail({ onClose }) {
         </FormLabel> */}
         <FormLabel>
           <Input
+            ref={ref}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
             placeholder="Email"
+            required
           />
         </FormLabel>
 
