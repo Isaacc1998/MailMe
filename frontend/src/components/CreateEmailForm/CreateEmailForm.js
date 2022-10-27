@@ -1,56 +1,66 @@
 import { FormLabel, Input, Button, Select } from "@chakra-ui/react";
+import jwtFetch from "../../store/jwt";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost } from "../../store/posts";
+import ViewHistoryModel from "./ViewHistoryModal";
 function CreateEmailForm({ onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [email, setEmail] = useState("");
   const dispatch = useDispatch();
-
-  const createEmailFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("email created");
-    // add onClose later
-    // let params = {
-    //     mailingListId: // this would be the id ,
-    //     title,
-    //     content: body
-    // }
-    // dispatch(createPost(params))
-  };
+  const currentList = useSelector(
+    (state) => state.mailingLists.currentMailingList
+  );
+  // const createEmailFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("email created");
+  //   // add onClose later
+  //   // let params = {
+  //   //     mailingListId: // this would be the id ,
+  //   //     title,
+  //   //     content: body
+  //   // }
+  //   // dispatch(createPost(params))
+  // };
   // ** SHAWNS
-  // const [clickedList, setClickedList] = useState("")
   // const mailingLists = useSelector((state) => state.mailingLists.lists);
 
-  //   const handleSend = async () => {
-  //     let title = emailTitle
-  //     let addresses = clickedList
-  //     let text = body
+  const handleSend = async (e) => {
+    e.preventDefault();
+    let addresses = currentList.emails;
+    await jwtFetch("/api/mail/sendmail", {
+      method: "POST",
+      body: JSON.stringify({ body, addresses, title }),
+    });
+    return dispatch(
+      createPost({
+        mailinglistId: currentList._id,
+        title: title,
+        content: body,
+      })
+    );
+  };
 
-  //     try {
-  //       await jwtFetch("/api/mail/sendmail", {
-  //         method: "POST",
-  //         body: JSON.stringify({text, addresses, title})
-  //       })
-  //     } catch (errors) {
-  //       console.log(errors)
-  //     }
-  //   }
-
-  //  <Select  onChange={(e) => setClickedList(e.target.value)} placeholder="Choose mail list">
-  // {mailingLists && mailingLists.map((list) => {
-  //   return <option value={list.emails}>{list.name}</option>
-  // })}
-  //** */ SHAWNS
   return (
     <>
-      <form className="create-email-form" onSubmit={createEmailFormSubmit}>
+      <form className="create-email-form" onSubmit={handleSend}>
         <FormLabel>Create Email</FormLabel>
-        <FormLabel>
-          <Select placeholder="Choose mail list">
-            <option>Single Mail List</option>
-            <option>Single Mail List</option>
+        <ViewHistoryModel setTitle={setTitle} setBody={setBody} />
+        {/* <FormLabel>
+          <Select
+            onChange={(e) =>
+              setClickedList(e.options[e.selectectedIndex].value)
+            }
+            placeholder="Choose mail list"
+          >
+            {mailingLists &&
+              mailingLists.map((list) => {
+                return <option value={list}>{list.name}</option>;
+              })}
           </Select>
-        </FormLabel>
+        </FormLabel> */}
         {/* <FormLabel>
           <Input
             type="text"
@@ -79,7 +89,9 @@ function CreateEmailForm({ onClose }) {
             }}
           />
         </FormLabel>
-        <Button type="submit">Create Mail</Button>
+        <Button type="submit" onClick={onClose}>
+          Create Mail
+        </Button>
       </form>
     </>
   );

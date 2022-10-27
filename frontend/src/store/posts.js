@@ -19,6 +19,13 @@ const removePost = (postId) => ({
   postId,
 });
 
+export const getAllPosts = () => async (dispatch) => {
+  console.log("hit posts thunk");
+  const res = await jwtFetch("/api/posts/");
+  const data = await res.json();
+  return dispatch(receivePosts(data));
+};
+
 export const getPosts = (mailinglistId) => async (dispatch) => {
   const res = await jwtFetch(`/api/mailinglists/${mailinglistId}/posts`);
   const data = await res.json();
@@ -35,6 +42,7 @@ export const getPost = (params) => async (dispatch) => {
 };
 
 export const createPost = (params) => async (dispatch) => {
+  console.log(params, "this is params");
   const { mailinglistId, title, content } = params;
   const res = await jwtFetch(`/api/mailinglists/${mailinglistId}/posts`, {
     method: "POST",

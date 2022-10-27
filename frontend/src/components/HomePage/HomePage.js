@@ -4,6 +4,7 @@ import CreateEmailFormModal from "../CreateEmailForm/CreateEmailFormModal";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserMailingLists } from "../../store/mailinglist";
+import { getPosts } from "../../store/posts";
 import {
   Table,
   Thead,
@@ -26,8 +27,12 @@ function HomePage() {
   const dispatch = useDispatch();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
   useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+  useEffect(() => {
     dispatch(getUserMailingLists());
   }, [dispatch]);
+
   return (
     <>
       <NavBar />

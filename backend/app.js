@@ -39,9 +39,11 @@ app.use(
 
 const mailinglistsRouter = require("./routes/api/mailinglists");
 const usersRouter = require("./routes/api/users");
+const postsRouter = require("./routes/api/posts");
 const csrfRouter = require("./routes/api/csrf");
-const mailRouter = require('./routes/api/mail');
+const mailRouter = require("./routes/api/mail");
 
+app.use("/api/posts", postsRouter);
 app.use("/api/mailinglists", mailinglistsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);

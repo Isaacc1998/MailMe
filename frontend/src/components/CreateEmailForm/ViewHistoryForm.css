@@ -1,0 +1,31 @@
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: auto;
+}
+
+.post {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 36px;
+  border-radius: 0.5rem;
+  background-color: rgb(200, 231, 231);
+  margin-bottom: 1.5%;
+  cursor: pointer;
+}
+
+.post:hover {
+  background-color: rgb(176, 203, 203);
+}
+
+.postTitle {
+  margin-left: 3%;
+  margin-right: 1%;
+}
+
+.postContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
