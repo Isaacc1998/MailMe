@@ -1,14 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const User = mongoose.model("User");
-const Mailinglist = mongoose.model("Mailinglist");
 const Post = mongoose.model("Post");
-const validatePosts = require("../../validations/posts");
+// const User = mongoose.model("User");
+// const Mailinglist = mongoose.model("Mailinglist");
+// const validatePosts = require("../../validations/posts");
 
 //posts index for when looking at posts history of mailing list
 router.get("/", async (req, res, next) => {
   let posts;
+  console.log("hit posts backend");
+
   try {
-  } catch (err) {}
+    posts = await Post.find()
+      .populate("list", "_id, name")
+      .sort({ createdAt: -1 });
+    return res.json(posts);
+  } catch (err) {
+    return res.json([]);
+  }
 });
+
+module.exports = router;

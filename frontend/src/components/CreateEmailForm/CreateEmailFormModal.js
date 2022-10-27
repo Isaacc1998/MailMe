@@ -29,8 +29,8 @@ function CreateEmailFormModal() {
 
           <ModalFooter>
             {/* <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Sign Up
-              </Button> */}
+              Sign Up
+            </Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>
