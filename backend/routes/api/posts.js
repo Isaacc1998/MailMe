@@ -13,10 +13,12 @@ router.get("/", async (req, res, next) => {
 
   try {
     posts = await Post.find()
-      .populate("list", "_id, name")
+      .populate("list", "_id owner name")
       .sort({ createdAt: -1 });
+
     return res.json(posts);
   } catch (err) {
+    console.log("catch error boi!!");
     return res.json([]);
   }
 });

@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage/HomePage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCurrentUser, logout } from "./store/session";
+import SubscribeLink from "./SubscribeLinkPage/SubscribeLink";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,31 +21,35 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoad(true));
   }, [dispatch]);
 
+  if (window.location.href.includes("subscribe")) return <SubscribeLink />;
   return (
-    load && (
-      <>
-        {!hasUser && (
+    <>
+      {load && (
+        <>
+          {!hasUser && (
+            <>
+              <Redirect to="/login" />
+            </>
+          )}
+          {/* {!hasUser ? (
           <>
-            <Redirect to="/login" />
+          <Redirect to="/login" />
           </>
-        )}
-        {/* {!hasUser ? (
-          <>
-            <Redirect to="/login" />
-          </>
-        ) : (
-          <>
+          ) : (
+            <>
             <Redirect to="/" />
-          </>
-        )} */}
-        <Switch>
-          {/* <Route exact path="/login" component={Splash} /> */}
+            </>
+          )} */}
+          <Switch>
+            {/* <Route exact path="/login" component={Splash} /> */}
 
-          <Route exact path="/login" component={Splash} />
-          <Route path="/" component={HomePage} />
-        </Switch>
-      </>
-    )
+            <Route exact path="/login" component={Splash} />
+
+            <Route path="/" component={HomePage} />
+          </Switch>
+        </>
+      )}
+    </>
   );
 }
 

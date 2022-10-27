@@ -20,9 +20,7 @@ function NavBar() {
     <>
       <div className="navbar-container">
         <Box sx={{ width: "100%", display: "flex" }}>
-          <Box ml="auto" pr="70px" mt={5}>
-            <SignoutMenu />
-          </Box>
+          <Box ml="auto" pr="70px" mt={5} mr="0px"></Box>
         </Box>
         <div className="top-right-home-container">
           <Link to="/">
@@ -45,14 +43,11 @@ function NavBar() {
               <ArrowForwardIcon fontSize={25} />
             </Button>
           </Box>
-          <Box sx={{ width: "428px", height: "60px", textAlign: "center" }}>
-            <Text fontWeight={700} fontSize="3xl">
-              {/* {currentMailingList && currentMailingList.name} */}
-            </Text>
-          </Box>
-          <Box>
+
+          <Box sx={{ display: "flex" }} justifyContent="flex-end" mr="60px">
             {/* <CreateEmailFormModal /> */}
             <CreateNewMailingListModal />
+            <SignoutMenu />
           </Box>
         </div>
       </div>

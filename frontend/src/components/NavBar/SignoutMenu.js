@@ -23,7 +23,7 @@ const SignoutMenu = () => {
           backgroundColor: "lightcoral",
         }}
       >
-        {currentUser.username}
+        {currentUser && currentUser.username}
       </MenuButton>
       <MenuList>
         <MenuItem onClick={logoutUser}>Sign Out</MenuItem>

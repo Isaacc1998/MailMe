@@ -28,6 +28,7 @@ function HomePage() {
   const dispatch = useDispatch();
   const location = useLocation();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
+  const currentUser = useSelector((state) => state.session.user);
   useEffect(() => {
     dispatch(getPosts());
   }, []);
@@ -35,6 +36,7 @@ function HomePage() {
     dispatch(getUserMailingLists());
   }, [dispatch]);
 
+  if (!currentUser) return <div></div>;
   return (
     <>
       <NavBar />

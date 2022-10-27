@@ -23,6 +23,7 @@ export const getAllPosts = () => async (dispatch) => {
   console.log("hit posts thunk");
   const res = await jwtFetch("/api/posts/");
   const data = await res.json();
+  console.log(data, "this posts redux thiunk");
   return dispatch(receivePosts(data));
 };
 
@@ -91,6 +92,7 @@ export const deletePost = (params) => async (dispatch) => {
 const postReducer = (state = { posts: [], currentPost: null }, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
+      console.log(action.posts, "THUN POST LEGIT");
       return { ...state, posts: action.posts };
     case RECEIVE_POST:
       return { ...state, currentPost: action.post };

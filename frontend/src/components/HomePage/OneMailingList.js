@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getMailingList } from "../../store/mailinglist";
 import {
   Box,
+  Button,
   Heading,
+  Input,
   Spacer,
   Table,
   TableCaption,
@@ -17,13 +19,16 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import CreateEmailFormModal from "../CreateEmailForm/CreateEmailFormModal";
 import AddEmailToList from "../AddEmailToList/AddEmailToList";
 
 const OneMailingList = () => {
+  const toast = useToast();
   const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
   const { _id } = useParams();
   console.log(_id, "paranms is this");
@@ -73,6 +78,33 @@ const OneMailingList = () => {
         <AddEmailToList />
         <Spacer m={5} />
         <CreateEmailFormModal />
+        <br />
+        {/* <Link to={`/subscribe/${_id}`}> */}
+        <Input
+          mt={5}
+          width="500px"
+          value={window.location.href.replace("mailingList", "subscribe")}
+        />
+        <br />
+        <Button
+          mt={2}
+          colorScheme="teal"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              window.location.href.replace("mailingList", "subscribe")
+            );
+            toast({
+              title: "Mailing List subscribe link has been copied.",
+              description: "The link has been copied to your clipboard.",
+              status: "success",
+              duration: 2000,
+              isClosable: true,
+            });
+          }}
+        >
+          Copy to Clipboard the Subscribe Link
+        </Button>
+        {/* </Link> */}
       </Box>
     </div>
   );
