@@ -2,24 +2,16 @@
   display: flex;
   width: 99vw;
   height: 100vh;
-  border: 1px solid black;
   padding-top: 100px;
 }
 
 .left-home-container {
   width: 30vw;
   height: 100vh;
-  border: 1px solid black;
 }
 .right-home-container {
   width: 69vw;
   height: 100vh;
-}
-.top-right-home-container {
-  display: flex;
-  justify-content: space-around;
-  border: 1px solid black;
-  height: 8vh;
 }
 
 .bottom-right-home-container {
@@ -27,6 +19,6 @@
   justify-content: center;
   /* flex-direction: column; */
   align-items: center;
-  border: 1px solid black;
+  border-left: 1px solid black;
   height: 92vh;
 }

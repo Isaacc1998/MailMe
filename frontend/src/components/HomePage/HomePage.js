@@ -17,7 +17,11 @@ import {
   Button,
   Box,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import { Link, Route, useHistory } from "react-router-dom";
+import MailingListSummary from "./MailingListSummary";
+import OneMailingList from "./OneMailingList";
+import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
 function HomePage() {
   const dispatch = useDispatch();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
@@ -33,52 +37,16 @@ function HomePage() {
           <p>Mailing List goes here</p>
         </div>
         <div className="right-home-container">
-          <div className="top-right-home-container">
-            Top Right side container
-            <div>Display user email</div>
-            <div>
-              <CreateEmailFormModal />
-            </div>
-          </div>
           <div className="bottom-right-home-container">
             {/* <div>Bottom Right side container &nbsp;</div>
             <div>Content of Mailing List</div> */}
             <div className="inner-bottom-right">
-              <TableContainer>
-                <Table variant="striped" colorScheme="teal">
-                  <TableCaption>Isaac</TableCaption>
-                  <Thead>
-                    <Tr>
-                      <Th>Mailing List Name</Th>
-                      <Th># of Emails</Th>
-                      <Th>Emails sent out</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {mailingLists.length > 0 &&
-                      mailingLists.map((list) => {
-                        return (
-                          <Tr>
-                            <Td>
-                              <Box
-                                as={Link}
-                                to={`${list.name}`}
-                                _hover={{
-                                  color: "red",
-                                }}
-                              >
-                                Go to {list.name}
-                              </Box>
-                            </Td>
-
-                            <Td>{list.emails.length}</Td>
-                            <Td>10</Td>
-                          </Tr>
-                        );
-                      })}
-                  </Tbody>
-                </Table>
-              </TableContainer>
+              <Route exact path="/">
+                <MailingListSummary mailingLists={mailingLists} />
+              </Route>
+              <Route path="/mailingList/:_id">
+                <OneMailingList />
+              </Route>
             </div>
           </div>
         </div>

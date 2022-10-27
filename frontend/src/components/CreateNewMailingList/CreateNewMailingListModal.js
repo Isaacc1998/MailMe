@@ -9,26 +9,27 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
-import CreateEmailForm from "./CreateEmailForm";
-function CreateEmailFormModal() {
+import CreateNewMailingList from "./CreateNewMailingList";
+//   import CreateEmailForm from "./CreateEmailForm";
+function CreateNewMailingListModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>Send Email</Button>
+      <Button onClick={onOpen}>Create New Mailing List</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Create New Mailing List</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <CreateEmailForm onClose={onClose} />
+            <CreateNewMailingList onClose={onClose} />
           </ModalBody>
 
           <ModalFooter>
             {/* <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Sign Up
-              </Button> */}
+                  Sign Up
+                </Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -36,4 +37,4 @@ function CreateEmailFormModal() {
   );
 }
 
-export default CreateEmailFormModal;
+export default CreateNewMailingListModal;

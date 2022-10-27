@@ -14,7 +14,8 @@ function App() {
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
   const hasUser = useSelector((state) => !!state.session.user);
-
+  console.log(hasUser, "has user");
+  console.log(load, "has load");
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoad(true));
   }, [dispatch]);
@@ -22,7 +23,12 @@ function App() {
   return (
     load && (
       <>
-        {!hasUser ? (
+        {!hasUser && (
+          <>
+            <Redirect to="/login" />
+          </>
+        )}
+        {/* {!hasUser ? (
           <>
             <Redirect to="/login" />
           </>
@@ -30,12 +36,12 @@ function App() {
           <>
             <Redirect to="/" />
           </>
-        )}
+        )} */}
         <Switch>
           {/* <Route exact path="/login" component={Splash} /> */}
 
           <Route exact path="/login" component={Splash} />
-          <Route exact path="/" component={HomePage} />
+          <Route path="/" component={HomePage} />
         </Switch>
       </>
     )

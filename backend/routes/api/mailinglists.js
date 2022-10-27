@@ -25,8 +25,8 @@ router.get("/home", requireUser, async (req, res, next) => {
   try {
     let mailinglists = await Mailinglist.find({ owner: currentUser._id })
       .sort({ createdAt: -1 })
-      .populate("owner", "_id, username")
-      .limit(10);
+      .populate("owner", "_id, username");
+    // .limit(10); // don't put a limit
     return res.json(mailinglists);
   } catch (err) {
     return res.json([]);
@@ -53,7 +53,7 @@ router.post("/", requireUser, validateMailinglist, async (req, res, next) => {
     const newList = new Mailinglist({
       name: req.body.name,
       owner: req.user._id,
-      emails: [],
+      emails: req.body.emails,
     });
 
     let list = await newList.save();
@@ -68,11 +68,9 @@ router.post("/", requireUser, validateMailinglist, async (req, res, next) => {
 router.put("/:mailinglistId", requireUser, async (req, res, next) => {
   let list;
   try {
-    console.log(req.params, "this is the params");
     list = await Mailinglist.findById(req.params.mailinglistId);
     // list = await Mailinglist.find({ _id: req.params.mailinglistId });
-    console.log(list, "thsi is list");
-    console.log(req.body.emails, "thsi is the emails array");
+
     list["name"] = req.body.name;
     for (let i = 0; i < req.body.emails.length; i++) {
       list["emails"].push(req.body.emails[i]);
@@ -158,8 +156,7 @@ router.put("/:mailinglistId/posts/:postId", async (req, res, next) => {
   let post;
   try {
     post = await Post.findById(req.params.postId);
-    console.log(post, "thsi is post in delete");
-    console.log(req.body, "body here");
+
     post.title = req.body.title;
     post.content = req.body.content;
     post.update();

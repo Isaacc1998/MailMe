@@ -23,7 +23,7 @@ router.get("/current", restoreUser, (req, res) => {
     // React application
     const csrfToken = req.csrfToken();
     res.cookie("CSRF-TOKEN", csrfToken);
-    console.log(csrfToken, "csrftoken in /current");
+    // console.log(csrfToken, "csrftoken in /current");
   }
   if (!req.user) return res.json(null);
   res.json({
@@ -35,7 +35,7 @@ router.get("/current", restoreUser, (req, res) => {
 
 router.post("/register", validateRegisterInput, async (req, res, next) => {
   // Your code will go here
-  console.log("hitting /register");
+  // console.log("hitting /register");
   const user = await User.findOne({
     $or: [{ email: req.body.email }, { username: req.body.username }],
   });
