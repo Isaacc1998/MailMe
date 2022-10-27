@@ -6,10 +6,8 @@ const cors = require("cors");
 const csurf = require("csurf");
 
 require("./models/User");
-
 require("./models/Mailinglist");
 require("./models/Post");
-
 require("./config/passport");
 
 const passport = require("passport");
@@ -42,11 +40,12 @@ app.use(
 const mailinglistsRouter = require("./routes/api/mailinglists");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
+const mailRouter = require('./routes/api/mail');
 
 app.use("/api/mailinglists", mailinglistsRouter);
 app.use("/api/users", usersRouter);
-
 app.use("/api/csrf", csrfRouter);
+app.use("/api/mail", mailRouter);
 
 // if (isProduction) {
 //   const path = require("path");
