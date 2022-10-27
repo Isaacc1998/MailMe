@@ -1,0 +1,11 @@
+.signup-button {
+  background-color: azure;
+}
+
+.signup-button:hover {
+  background-color: aquamarine;
+}
+
+.signup-button-for-splash {
+  background-color: white;
+}

@@ -8,7 +8,8 @@ import {
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import "./SignupForm.css";
+import "./SignupForm.css";
+
 import { signup, clearSessionErrors } from "../../store/session";
 
 function SignupForm({ onClose }) {
@@ -68,7 +69,7 @@ function SignupForm({ onClose }) {
     <>
       <form className="signup-form" onSubmit={usernameSubmit}>
         {/* {JSON.stringify(errors)} */}
-        <h1>Sign Up</h1>
+
         <FormLabel>
           <span>Email</span>
           <Input
@@ -122,6 +123,7 @@ function SignupForm({ onClose }) {
           </Text>
         </FormLabel>
         <Button
+          className="signup-button"
           type="submit"
           disabled={!email || !username || !password || password !== password2}
         >
