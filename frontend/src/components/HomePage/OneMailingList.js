@@ -25,6 +25,8 @@ import {
 import { Link } from "react-router-dom";
 import CreateEmailFormModal from "../CreateEmailForm/CreateEmailFormModal";
 import AddEmailToList from "../AddEmailToList/AddEmailToList";
+import EditNameModal from "./EditName";
+import "./HomePage.css";
 
 const OneMailingList = () => {
   const toast = useToast();
@@ -52,7 +54,7 @@ const OneMailingList = () => {
         <Text sx={{ display: "inline", fontWeight: 700 }} color="red">
           {currentMailingList.name}
         </Text>
-        "
+        "<EditNameModal id={currentMailingList._id} />
       </Heading>
       <TableContainer mb="50px">
         <Table variant="striped" colorScheme="teal">

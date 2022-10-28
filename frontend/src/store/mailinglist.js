@@ -75,7 +75,10 @@ export const createMailingList = (params) => async (dispatch) => {
 };
 
 export const updateMailingList = (params) => async (dispatch) => {
-  const { mailinglistId, name, emails } = params;
+  let { mailinglistId, name, emails } = params;
+  if (!emails) {
+    emails = [];
+  }
   const res = await jwtFetch(`/api/mailinglists/${mailinglistId}`, {
     method: "PUT",
     body: JSON.stringify({
