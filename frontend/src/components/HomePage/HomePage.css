@@ -39,3 +39,25 @@
 .inner-bottom-right {
   padding-bottom: 100px;
 }
+
+.deleteList {
+  text-align: center;
+  cursor: pointer;
+}
+
+.deleteEmail {
+  text-align: center;
+  cursor: pointer;
+}
+
+.updateName {
+  display: inline-block;
+  position: relative;
+  align-items: center;
+  font-size: 12px;
+  font-style: italic;
+  font-style: oblique 290deg;
+  font-weight: 500;
+  color: rgb(155, 151, 151);
+  left: 10px;
+}

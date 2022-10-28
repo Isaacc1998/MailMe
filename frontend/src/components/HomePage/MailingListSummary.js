@@ -7,6 +7,7 @@ import {
   Tbody,
   Td,
   Th,
+  Button,
   Thead,
   Tr,
 } from "@chakra-ui/react";
@@ -14,6 +15,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { emptyCurrList } from "../../store/mailinglist";
+import { removeMailingList } from "../../store/mailinglist";
+import "./HomePage.css";
 
 const MailingListSummary = ({ mailingLists }) => {
   const dispatch = useDispatch();
@@ -27,6 +30,7 @@ const MailingListSummary = ({ mailingLists }) => {
       type: "mailinglist/EMPTY_CURR_LIST",
     });
   }, []);
+
   return (
     <>
       <Heading m={4} textAlign="left">
@@ -90,6 +94,21 @@ const MailingListSummary = ({ mailingLists }) => {
                       <Td isNumeric>{list.emails.length}</Td>
                     ) : null}
                     {/* <Td>10</Td> */}
+
+                    <Td>
+                      <div
+                        className="deleteList"
+                        onClick={() => {
+                          return dispatch(removeMailingList(list._id)).then(
+                            () => {
+                              return history.push("/");
+                            }
+                          );
+                        }}
+                      >
+                        Remove
+                      </div>
+                    </Td>
                   </Tr>
                 );
               })}
