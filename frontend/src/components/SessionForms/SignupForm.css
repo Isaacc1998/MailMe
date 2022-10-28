@@ -9,3 +9,7 @@
 .signup-button-for-splash {
   background-color: white;
 }
+
+.signup-button-for-splash:hover {
+  background-color: aqua;
+}
