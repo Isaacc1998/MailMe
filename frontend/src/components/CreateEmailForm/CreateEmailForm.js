@@ -1,4 +1,11 @@
-import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
+import {
+  FormLabel,
+  Input,
+  Button,
+  Select,
+  Textarea,
+  Heading,
+} from "@chakra-ui/react";
 import jwtFetch from "../../store/jwt";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -48,7 +55,9 @@ function CreateEmailForm({ onClose }) {
   return (
     <>
       <form className="create-email-form" onSubmit={handleSend}>
-        <FormLabel>Create Email</FormLabel>
+        <Heading mt={3} mb={3} fontSize="2xl">
+          Create Email
+        </Heading>
         <ViewHistoryModel setTitle={setTitle} setBody={setBody} />
         {/* <FormLabel>
           <Select
@@ -72,7 +81,7 @@ function CreateEmailForm({ onClose }) {
             placeholder="Enter Emails"
           />
         </FormLabel> */}
-        <FormLabel>
+        <FormLabel mt={3}>
           <Input
             type="text"
             value={title}
@@ -91,7 +100,7 @@ function CreateEmailForm({ onClose }) {
             }}
           />
         </FormLabel>
-        <Button type="submit" onClick={onClose}>
+        <Button mt={3} colorScheme="green" type="submit" onClick={onClose}>
           Create Mail
         </Button>
       </form>

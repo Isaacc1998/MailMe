@@ -10,12 +10,14 @@ import {
   Button,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { emptyCurrList } from "../../store/mailinglist";
 import { removeMailingList } from "../../store/mailinglist";
+import ConfirmMailingListDelete from "./ConfirmMailingListDelete";
 import "./HomePage.css";
 
 const MailingListSummary = ({ mailingLists }) => {
@@ -38,7 +40,7 @@ const MailingListSummary = ({ mailingLists }) => {
       </Heading>
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
-          <TableCaption>Isaac</TableCaption>
+          {/* <TableCaption>Isaac</TableCaption> */}
           <Thead>
             <Tr>
               <Th>Mailing List Name</Th>
@@ -67,8 +69,8 @@ const MailingListSummary = ({ mailingLists }) => {
                   >
                     <Td>
                       <Box
-                        as={Link}
-                        to={`/mailingList/${list._id}`}
+                        // as={Link}
+                        // to={`/mailingList/${list._id}`}
                         _hover={{
                           color: "red",
                         }}
@@ -95,20 +97,13 @@ const MailingListSummary = ({ mailingLists }) => {
                     ) : null}
                     {/* <Td>10</Td> */}
 
-                    <Td>
-                      <div
-                        className="deleteList"
-                        onClick={() => {
-                          return dispatch(removeMailingList(list._id)).then(
-                            () => {
-                              return history.push("/");
-                            }
-                          );
-                        }}
-                      >
-                        Remove
-                      </div>
-                    </Td>
+                    {location.pathname === "/" ? (
+                      <Td isNumeric>
+                        {/* is numeric makes it text align right */}
+
+                        <ConfirmMailingListDelete list={list} />
+                      </Td>
+                    ) : null}
                   </Tr>
                 );
               })}

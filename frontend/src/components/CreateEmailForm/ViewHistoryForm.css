@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: auto;
+  margin-bottom: 20px;
 }
 
 .post {

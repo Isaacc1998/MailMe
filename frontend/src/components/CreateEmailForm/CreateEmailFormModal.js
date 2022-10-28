@@ -21,7 +21,7 @@ function CreateEmailFormModal() {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          {/* <ModalHeader>Modal Title</ModalHeader> */}
           <ModalCloseButton />
           <ModalBody>
             <CreateEmailForm onClose={onClose} />

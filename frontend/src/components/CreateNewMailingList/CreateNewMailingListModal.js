@@ -16,7 +16,7 @@ function CreateNewMailingListModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box ml="auto">
+      <Box ml="auto" mr={5}>
         <Button colorScheme="green" onClick={onOpen}>
           Create New Mailing List
         </Button>

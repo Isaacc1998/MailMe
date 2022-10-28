@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -14,10 +14,11 @@ const SignoutMenu = () => {
     return history.push("/login");
   };
   return (
-    <Menu>
+    <Menu autoSelect={false}>
       <MenuButton
         sx={{ backgroundColor: "lightcoral" }}
         as={Button}
+        leftIcon={<HamburgerIcon />}
         rightIcon={<ChevronDownIcon />}
         _active={{
           backgroundColor: "lightcoral",
@@ -25,8 +26,15 @@ const SignoutMenu = () => {
       >
         {currentUser && currentUser.username}
       </MenuButton>
-      <MenuList>
-        <MenuItem onClick={logoutUser}>Sign Out</MenuItem>
+      <MenuList bgColor="pink">
+        <MenuItem
+          _hover={{ bgColor: "pink" }}
+          color="black"
+          fontWeight={700}
+          onClick={logoutUser}
+        >
+          Sign Out
+        </MenuItem>
       </MenuList>
     </Menu>
   );

@@ -19,7 +19,9 @@ function ViewHistoryModel({ setTitle, setBody }) {
   );
   return (
     <>
-      <Button onClick={onOpen}>Past emails</Button>
+      <Button colorScheme="orange" onClick={onOpen}>
+        Past emails
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

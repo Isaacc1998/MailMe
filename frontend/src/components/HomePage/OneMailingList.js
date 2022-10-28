@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { getMailingList } from "../../store/mailinglist";
+import { getMailingList, getUserMailingLists } from "../../store/mailinglist";
 import { removeEmail } from "../../store/mailinglist";
 import {
   Box,
@@ -46,7 +46,7 @@ const OneMailingList = () => {
       });
   }, [dispatch, _id]);
 
-  if (loading) return <div></div>;
+  if (loading || !currentMailingList) return <div></div>;
   return (
     <div>
       <Heading fontSize={30} m={5} textAlign="left">
@@ -54,7 +54,11 @@ const OneMailingList = () => {
         <Text sx={{ display: "inline", fontWeight: 700 }} color="red">
           {currentMailingList.name}
         </Text>
-        "<EditNameModal id={currentMailingList._id} />
+        "
+        <EditNameModal
+          id={currentMailingList._id}
+          oldName={currentMailingList.name}
+        />
       </Heading>
       <TableContainer mb="50px">
         <Table variant="striped" colorScheme="teal">
@@ -72,26 +76,50 @@ const OneMailingList = () => {
                 return (
                   <Tr>
                     <Td fontSize="20px">{mail}</Td>
-                    <Td>
-                      <div
+                    <Td isNumeric>
+                      <Box
+                        as={Button}
+                        colorScheme="red"
                         className="deleteEmail"
                         onClick={() => {
+                          console.log("deletin");
+                          console.log(mail, "thisss");
+                          console.log(mail.replace("\n", ""), "thisss");
                           return dispatch(
                             removeEmail({
                               mailingListId: currentMailingList._id,
-                              email: mail,
+                              email: mail.replace("\n", ""),
                             })
                           ).then(() => {
-                            setEmails(currentMailingList.emails);
+                            // setEmails(currentMailingList.emails);
+
+                            toast({
+                              title: `Email ${mail} has been deleted.`,
+                              position: "bottom",
+
+                              status: "error",
+                              duration: 5000,
+                              isClosable: true,
+                            });
+
+                            dispatch(getMailingList(_id));
+                            dispatch(getUserMailingLists());
                           });
                         }}
                       >
-                        Remove
-                      </div>
+                        Remove Email
+                      </Box>
                     </Td>
                   </Tr>
                 );
               })}
+            {currentMailingList.emails.length === 0 && (
+              <Tr>
+                <Td textAlign="center" fontSize="30px" fontWeight={500}>
+                  You have no emails! Add one below!
+                </Td>
+              </Tr>
+            )}
           </Tbody>
         </Table>
       </TableContainer>
@@ -118,7 +146,7 @@ const OneMailingList = () => {
               title: "Mailing List subscribe link has been copied.",
               description: "The link has been copied to your clipboard.",
               status: "success",
-              duration: 2000,
+              duration: 5000,
               isClosable: true,
             });
           }}

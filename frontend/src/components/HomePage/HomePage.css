@@ -54,10 +54,10 @@
   display: inline-block;
   position: relative;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
   font-style: oblique 290deg;
-  font-weight: 500;
+  font-weight: 700;
   color: rgb(155, 151, 151);
   left: 10px;
 }

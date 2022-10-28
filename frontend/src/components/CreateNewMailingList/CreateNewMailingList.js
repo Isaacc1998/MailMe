@@ -1,6 +1,7 @@
 import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createMailingList } from "../../store/mailinglist";
 function CreateNewMailingList({ onClose }) {
   const [name, setName] = useState("");
@@ -8,11 +9,12 @@ function CreateNewMailingList({ onClose }) {
   const dispatch = useDispatch();
   const currentUserId = useSelector((state) => state.session.user._id);
   const ref = useRef(null);
+  const history = useHistory();
 
   const createMailingListFormSubmit = (e) => {
     e.preventDefault();
     console.log("email created");
-    let emailsArray = emails.split(", ");
+    let emailsArray = emails.replace("\n", "").split(", "); // basically a bug happening where \n aka newline was not letting things be deleted. textarea lets you newline. so i just replace all new lines with empty string - william
     let obj = {
       name: name,
       owner: currentUserId,
@@ -22,6 +24,11 @@ function CreateNewMailingList({ onClose }) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "this is submitted email data real quick");
+
+        setTimeout(() => {
+          onClose();
+          history.push("/mailinglist/" + data._id);
+        }, 300);
       });
     // add onClose later
     // let params = {
@@ -52,6 +59,7 @@ function CreateNewMailingList({ onClose }) {
         </FormLabel>
         <FormLabel>
           <Textarea
+            required
             value={emails}
             onChange={(e) => setEmails(e.currentTarget.value)}
             placeholder="Enter emails, comma seperated like example@example.com, sample@sample.com, demo@demo.io"
@@ -61,7 +69,9 @@ function CreateNewMailingList({ onClose }) {
             }}
           />
         </FormLabel>
-        <Button type="submit">Create Mailing List</Button>
+        <Button colorScheme="green" type="submit">
+          Create Mailing List
+        </Button>
       </form>
     </>
   );

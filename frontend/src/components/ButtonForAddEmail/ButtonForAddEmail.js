@@ -1,4 +1,12 @@
-import { FormLabel, Input, Button, Select, Textarea } from "@chakra-ui/react";
+import {
+  FormLabel,
+  Input,
+  Button,
+  Select,
+  Textarea,
+  Heading,
+  useToast,
+} from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import jwtFetch from "../../store/jwt";
@@ -8,6 +16,7 @@ import {
 } from "../../store/mailinglist";
 function ButtonForAddEmail({ onClose }) {
   const [email, setEmail] = useState("");
+  const toast = useToast();
   const dispatch = useDispatch();
   const currentMailingList = useSelector(
     (state) => state.mailingLists.currentMailingList
@@ -35,6 +44,14 @@ function ButtonForAddEmail({ onClose }) {
         console.log(data, "this is data");
 
         onClose();
+        toast({
+          title: `User added!`,
+          position: "bottom",
+          description: `Email "${email}" is now subscribed to "${currentMailingList.name}".`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
       });
   };
 
@@ -46,8 +63,9 @@ function ButtonForAddEmail({ onClose }) {
   return (
     <>
       <form className="create-email-form" onSubmit={addSubscriberSubmit}>
-        <FormLabel>Add a subscriber to {currentMailingList.name}</FormLabel>
-        <FormLabel></FormLabel>
+        <Heading mt={3} fontSize="2xl">
+          Add a subscriber to {currentMailingList.name}
+        </Heading>
         {/* <FormLabel>
           <Input
             type="text"
@@ -58,6 +76,7 @@ function ButtonForAddEmail({ onClose }) {
         </FormLabel> */}
         <FormLabel>
           <Input
+            mt={5}
             ref={ref}
             type="email"
             value={email}
@@ -67,7 +86,7 @@ function ButtonForAddEmail({ onClose }) {
           />
         </FormLabel>
 
-        <Button colorScheme="teal" type="submit">
+        <Button mt={3} colorScheme="teal" type="submit">
           Add Subscriber
         </Button>
       </form>

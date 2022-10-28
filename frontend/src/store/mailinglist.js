@@ -60,7 +60,7 @@ export const createMailingList = (params) => async (dispatch) => {
       emails: emails,
     }),
   });
-
+  console.log("hi");
   const data2 = await res.clone();
   const data = await res.json();
   console.log(data, data2, "data and data2");

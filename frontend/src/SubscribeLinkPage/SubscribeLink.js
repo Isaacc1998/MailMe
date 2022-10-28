@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Input, useToast } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, Input, useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMailingList } from "../store/mailinglist";
@@ -27,9 +27,13 @@ const SubscribeLink = () => {
         flexDir: "column",
       }}
     >
+      <Image
+        w="10%"
+        src="https://thumbs.dreamstime.com/b/clip-art-announcement-illustrator-vector-bulletin-notice-notification-line-sign-symbol-newsletter-line-clipart-sign-icon-221613640.jpg"
+      />
       <Heading mb={10}>
         Confirm your subscription to{" "}
-        {currentMailingList && currentMailingList.name}
+        {currentMailingList && currentMailingList.name}'s newsletter.
       </Heading>
       <Input w="700px" placeholder="Enter your email" />
       <Button
@@ -39,7 +43,7 @@ const SubscribeLink = () => {
             title: "Subscription confirmed.",
             description: "You have subscribed!.",
             status: "success",
-            duration: 2000,
+            duration: 5000,
             isClosable: true,
           });
         }}
