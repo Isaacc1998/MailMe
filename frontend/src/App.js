@@ -21,6 +21,9 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoad(true));
   }, [dispatch]);
 
+  useEffect(() => {
+    document.title = "MailMe";
+  }, []);
   if (window.location.href.includes("subscribe")) return <SubscribeLink />;
   return (
     <>

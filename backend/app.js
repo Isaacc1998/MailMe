@@ -49,21 +49,21 @@ app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/mail", mailRouter);
 
-// if (isProduction) {
-//   const path = require("path");
+if (isProduction) {
+  const path = require("path");
 
-//   app.get("/", (req, res) => {
-//     res.cookie("CSRF-TOKEN", req.csrfToken());
-//     res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-//   });
+  app.get("/", (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
 
-//   app.use(express.static(path.resolve("../frontend/build")));
+  app.use(express.static(path.resolve("../frontend/build")));
 
-//   app.get(/^(?!\/?api).*/, (req, res) => {
-//     res.cookie("CSRF-TOKEN", req.csrfToken());
-//     res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-//   });
-// }
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+}
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");
