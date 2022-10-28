@@ -1,7 +1,7 @@
 {
   "name": "mailme",
   "version": "1.0.0",
-  "description": "A mailing list app.",
+  "description": "A mailing list app",
   "scripts": {
     "backend-install": "npm install --prefix backend",
     "backend": "npm run dev --prefix backend",
