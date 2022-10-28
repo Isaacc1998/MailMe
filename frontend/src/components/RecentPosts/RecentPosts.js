@@ -14,6 +14,7 @@ const RecentPosts = () => {
   let filteredPosts =
     posts &&
     posts.filter((ele) => {
+      if (!ele.list) return false;
       return currentUserId == ele.list.owner;
     });
   console.log(filteredPosts.length, "LENGTH HERE");

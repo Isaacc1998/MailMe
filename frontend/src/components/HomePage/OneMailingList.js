@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { getMailingList } from "../../store/mailinglist";
+import { removeEmail } from "../../store/mailinglist";
 import {
   Box,
   Button,
@@ -28,7 +29,7 @@ import AddEmailToList from "../AddEmailToList/AddEmailToList";
 const OneMailingList = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(true);
-
+  const [emails, setEmails] = useState();
   const dispatch = useDispatch();
   const { _id } = useParams();
   console.log(_id, "paranms is this");
@@ -42,6 +43,7 @@ const OneMailingList = () => {
         setLoading(false);
       });
   }, [dispatch, _id]);
+
   if (loading) return <div></div>;
   return (
     <div>
@@ -68,6 +70,23 @@ const OneMailingList = () => {
                 return (
                   <Tr>
                     <Td fontSize="20px">{mail}</Td>
+                    <Td>
+                      <div
+                        className="deleteEmail"
+                        onClick={() => {
+                          return dispatch(
+                            removeEmail({
+                              mailingListId: currentMailingList._id,
+                              email: mail,
+                            })
+                          ).then(() => {
+                            setEmails(currentMailingList.emails);
+                          });
+                        }}
+                      >
+                        Remove
+                      </div>
+                    </Td>
                   </Tr>
                 );
               })}

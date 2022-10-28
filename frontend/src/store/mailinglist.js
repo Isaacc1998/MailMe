@@ -91,6 +91,15 @@ export const updateMailingList = (params) => async (dispatch) => {
   return data2;
 };
 
+export const removeEmail = (params) => async (dispatch) => {
+  const { mailingListId, email } = params;
+  const res = await jwtFetch(`/api/mailinglists/${mailingListId}/${email}`, {
+    method: "PUT",
+  });
+  const data = await res.json();
+  dispatch(getMailingList(mailingListId));
+};
+
 export const removeMailingList = (mailingListId) => async (dispatch) => {
   const res = await jwtFetch(`/api/mailinglists/${mailingListId}`, {
     method: "DELETE",

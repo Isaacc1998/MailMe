@@ -8,6 +8,7 @@ const Mailinglist = mongoose.model("Mailinglist");
 const Post = mongoose.model("Post");
 const validateMailinglist = require("../../validations/mailinglists");
 const validatePosts = require("../../validations/posts");
+const Mail = require("nodemailer/lib/mailer");
 // const { isProduction } = require("../../config/keys");
 
 //mailing list index for current user
@@ -86,11 +87,32 @@ router.put("/:mailinglistId", requireUser, async (req, res, next) => {
   }
 });
 
-//delete mailing list
-router.delete("/:mailinglistId", async (req, res, next) => {
+router.put("/:mailinglistId/:email", async (req, res, next) => {
   let list;
   try {
     list = await Mailinglist.findById(req.params.mailinglistId);
+    list.emails.remove(req.params.email);
+    list.update();
+    await list.save();
+    return res.json(list);
+  } catch {
+    const error = new Error("Mailing List not found");
+    error.statusCode = 404;
+    error.errors = { message: "No mailing list found with that id" };
+    return next(error);
+  }
+});
+
+//delete mailing list
+router.delete("/:mailinglistId", async (req, res, next) => {
+  let list;
+  let posts;
+  try {
+    list = await Mailinglist.findById(req.params.mailinglistId);
+    posts = await Post.find({ list: req.params.mailinglistId });
+    for (let i = 0; i < posts.length; i++) {
+      posts[i].remove();
+    }
     list.remove();
     return res.json(list);
   } catch {
