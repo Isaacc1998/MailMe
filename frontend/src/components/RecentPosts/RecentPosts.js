@@ -6,11 +6,12 @@ import { getAllPosts } from "../../store/posts";
 
 const RecentPosts = () => {
   //  get the useSelector state then map
-  const posts = useSelector((state) => state.posts.posts);
+  let posts = useSelector((state) => state.posts.posts);
   const currentUserId = useSelector((state) => state.session.user._id);
   const history = useHistory();
   const dispatch = useDispatch();
   console.log(posts, "this is posts");
+  if (!Array.isArray(posts)) posts = [posts];
   let filteredPosts =
     posts &&
     posts.filter((ele) => {
