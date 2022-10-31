@@ -21,6 +21,24 @@ body {
   margin-bottom: 130px;
   padding-left: 150px;
 }
+.developer-links {
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+}
+.william-links {
+  width: 300px;
+}
+
+.isaac-links {
+  width: 300px;
+}
+.shawn-links {
+  width: 300px;
+}
+.kyungmin-links {
+  width: 300px;
+}
 .RIGHT {
   display: flex;
   justify-content: center;

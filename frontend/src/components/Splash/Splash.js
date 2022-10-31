@@ -1,14 +1,217 @@
 import { Link } from "react-router-dom";
 import LoginForm from "../SessionForms/LoginForm";
 import SignupFormModal from "../SessionForms/SignupFormModal";
-import { Image } from "@chakra-ui/react";
+import {
+  Button,
+  Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
+import { VscGithubInverted } from "react-icons/vsc";
+import { TbBrandLinkedin } from "react-icons/tb";
 import Logo from "./Logo";
 import "./Splash.css";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 function Splash() {
   return (
     <>
       <div className="container">
+        <div className="developer-links">
+          <div className="william-links">
+            <Menu>
+              <MenuButton
+                as={Button}
+                backgroundColor={"white"}
+                _hover={{ bg: "cyan.200" }}
+                rightIcon={<ChevronDownIcon />}
+              >
+                William Chan
+              </MenuButton>
+              <MenuList>
+                <MenuItem minH="48px">
+                  <a target="./" href="https://github.com/wc2184">
+                    <VscGithubInverted
+                      size="28px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/wc2184"
+                      alt="William's Github"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/wc2184">
+                    <span>William's Github</span>
+                  </a>
+                </MenuItem>
+                <MenuItem minH="40px">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/william-chan-3bb674194/"
+                  >
+                    <TbBrandLinkedin
+                      size="30px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://placekitten.com/120/120"
+                      alt="William's LinkedIn"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/william-chan-3bb674194/"
+                  >
+                    <span>William's LinkedIn</span>
+                  </a>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
+          <div className="isaac-links">
+            <Menu>
+              <MenuButton
+                as={Button}
+                backgroundColor={"white"}
+                _hover={{ bg: "cyan.200" }}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Isaac Choi
+              </MenuButton>
+              <MenuList>
+                <MenuItem minH="48px">
+                  <a target="./" href="https://github.com/Isaacc1998">
+                    <VscGithubInverted
+                      size="28px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/Isaacc1998"
+                      alt="Isaac's Github"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/Isaacc1998">
+                    <span>Isaac's Github</span>
+                  </a>
+                </MenuItem>
+                <MenuItem minH="40px">
+                  <a target="./" href="https://github.com/Isaacc1998">
+                    <TbBrandLinkedin
+                      size="30px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/Isaacc1998"
+                      alt="Isaac's LinkedIn"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/Isaacc1998">
+                    <span>Isaac's LinkedIn</span>
+                  </a>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
+          <div className="shawn-links">
+            <Menu>
+              <MenuButton
+                as={Button}
+                backgroundColor={"white"}
+                _hover={{ bg: "cyan.200" }}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Shawn Mallon
+              </MenuButton>
+              <MenuList>
+                <MenuItem minH="48px">
+                  <a target="./" href="https://github.com/lokisk1155">
+                    <VscGithubInverted
+                      size="28px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/lokisk1155"
+                      alt="Shawn's Github"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/lokisk1155">
+                    <span>Shawn's Github</span>
+                  </a>
+                </MenuItem>
+                <MenuItem minH="40px">
+                  <a target="./" href="https://github.com/lokisk1155">
+                    <TbBrandLinkedin
+                      size="30px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/lokisk1155"
+                      alt="Shawn's LinkedIn"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/lokisk1155">
+                    <span>Shawn's LinkedIn</span>
+                  </a>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
+          <div className="kyungmin-links">
+            <Menu>
+              <MenuButton
+                as={Button}
+                backgroundColor={"white"}
+                _hover={{ bg: "cyan.200" }}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Kyungmin Lee
+              </MenuButton>
+              <MenuList>
+                <MenuItem minH="48px">
+                  <a target="./" href="https://github.com/KmLee7">
+                    <VscGithubInverted
+                      size="28px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/KmLee7"
+                      alt="Kyungmin's Github"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/KmLee7">
+                    <span>Kyungmin's Github</span>
+                  </a>
+                </MenuItem>
+                <MenuItem minH="40px">
+                  <a target="./" href="https://github.com/KmLee7">
+                    <TbBrandLinkedin
+                      size="30px"
+                      boxSize="2rem"
+                      borderRadius="full"
+                      src="https://github.com/KmLee7"
+                      alt="Kyungmin's LinkedIn"
+                      mr="12px"
+                    />
+                  </a>
+                  <div style={{ width: 10 }}></div>
+                  <a target="./" href="https://github.com/KmLee7">
+                    <span>Kyungmin's LinkedIn</span>
+                  </a>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
+        </div>
+
         <div className="top-container">
           <div className="top-container-left">
             <Logo />
