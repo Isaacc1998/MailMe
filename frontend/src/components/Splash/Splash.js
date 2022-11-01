@@ -100,18 +100,24 @@ function Splash() {
                   </a>
                 </MenuItem>
                 <MenuItem minH="40px">
-                  <a target="./" href="https://github.com/Isaacc1998">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/isaac-choi-38636723b/"
+                  >
                     <TbBrandLinkedin
                       size="30px"
                       boxSize="2rem"
                       borderRadius="full"
-                      src="https://github.com/Isaacc1998"
+                      src="https://www.linkedin.com/in/isaac-choi-38636723b/"
                       alt="Isaac's LinkedIn"
                       mr="12px"
                     />
                   </a>
                   <div style={{ width: 10 }}></div>
-                  <a target="./" href="https://github.com/Isaacc1998">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/isaac-choi-38636723b/"
+                  >
                     <span>Isaac's LinkedIn</span>
                   </a>
                 </MenuItem>
@@ -146,18 +152,24 @@ function Splash() {
                   </a>
                 </MenuItem>
                 <MenuItem minH="40px">
-                  <a target="./" href="https://github.com/lokisk1155">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/shawn-mallon-3050b7161/"
+                  >
                     <TbBrandLinkedin
                       size="30px"
                       boxSize="2rem"
                       borderRadius="full"
-                      src="https://github.com/lokisk1155"
+                      src="https://www.linkedin.com/in/shawn-mallon-3050b7161/"
                       alt="Shawn's LinkedIn"
                       mr="12px"
                     />
                   </a>
                   <div style={{ width: 10 }}></div>
-                  <a target="./" href="https://github.com/lokisk1155">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/shawn-mallon-3050b7161/"
+                  >
                     <span>Shawn's LinkedIn</span>
                   </a>
                 </MenuItem>
@@ -192,18 +204,24 @@ function Splash() {
                   </a>
                 </MenuItem>
                 <MenuItem minH="40px">
-                  <a target="./" href="https://github.com/KmLee7">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
+                  >
                     <TbBrandLinkedin
                       size="30px"
                       boxSize="2rem"
                       borderRadius="full"
-                      src="https://github.com/KmLee7"
+                      src="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
                       alt="Kyungmin's LinkedIn"
                       mr="12px"
                     />
                   </a>
                   <div style={{ width: 10 }}></div>
-                  <a target="./" href="https://github.com/KmLee7">
+                  <a
+                    target="./"
+                    href="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
+                  >
                     <span>Kyungmin's LinkedIn</span>
                   </a>
                 </MenuItem>
