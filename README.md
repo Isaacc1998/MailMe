@@ -13,40 +13,40 @@ useEffect(() => {
 }, [dispatch, _id]);
 
 {currentMailingList &&
-              currentMailingList.emails.map((mail) => {
-                return (
-                  <Tr>
-                    <Td fontSize="20px">{mail}</Td>
-                    <Td isNumeric>
-                      <Box
-                        as={Button}
-                        colorScheme="red"
-                        className="deleteEmail"
-                        onClick={() => {
-                          return dispatch(
-                            removeEmail({
-                              mailingListId: currentMailingList._id,
-                              email: mail.replace("\n", ""),
-                            })
-                          ).then(() => {
+ currentMailingList.emails.map((mail) => {
+   return (
+     <Tr>
+       <Td fontSize="20px">{mail}</Td>
+       <Td isNumeric>
+         <Box
+           as={Button}
+           colorScheme="red"
+           className="deleteEmail"
+           onClick={() => {
+             return dispatch(
+               removeEmail({
+                 mailingListId: currentMailingList._id,
+                 email: mail.replace("\n", ""),
+               })
+             ).then(() => {
 
-                            toast({
-                              title: `Email ${mail} has been deleted.`,
-                              position: "bottom",
-                              status: "error",
-                              duration: 5000,
-                              isClosable: true,
-                            });
+               toast({
+                 title: `Email ${mail} has been deleted.`,
+                 position: "bottom",
+                 status: "error",
+                 duration: 5000,
+                 isClosable: true,
+               });
 
-                            dispatch(getMailingList(_id));
-                            dispatch(getUserMailingLists());
-                          });
-                        }}
-                      >
-                        Remove Email
-                      </Box>
-                    </Td>
-                  </Tr>
-                );
+               dispatch(getMailingList(_id));
+               dispatch(getUserMailingLists());
+             });
+           }}
+         >
+           Remove Email
+         </Box>
+       </Td>
+     </Tr>
+   );
 })}
 ```
