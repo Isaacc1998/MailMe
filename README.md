@@ -51,3 +51,25 @@ useEffect(() => {
    );
 })}
 ```
+
+### The router method for deleting mailing lists first deletes any dependencies (posts) by first retrieving all posts with a mailing list id foreign key that matches the ":mailinglistId" wildcard passed in, and subsequently deleting those posts before finally removing the mailing list itself.
+```javascript
+router.delete("/:mailinglistId", async (req, res, next) => {
+  let list;
+  let posts;
+  try {
+    list = await Mailinglist.findById(req.params.mailinglistId);
+    posts = await Post.find({ list: req.params.mailinglistId });
+    for (let i = 0; i < posts.length; i++) {
+      posts[i].remove();
+    }
+    list.remove();
+    return res.json(list);
+  } catch {
+    const error = new Error("Mailing List not found");
+    error.statusCode = 404;
+    error.errors = { message: "No mailing list found with that id" };
+    return next(error);
+  }
+});
+```
