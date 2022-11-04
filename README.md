@@ -73,3 +73,22 @@ router.delete("/:mailinglistId", async (req, res, next) => {
   }
 });
 ```
+
+### The handler method for starting tutorial and skipping tutorial buttons. Setting a key 'show' to false in the local storage when clicked skip tutorial and setting it to true when clicked start tutorial. 
+
+```javascript
+  const handleSkipTutorial = (e) => {
+    e.preventDefault();
+    localStorage.setItem("show", false);
+    setTimeout(() => {
+      return history.push("/");
+    }, 200);
+  };
+  const handleTutorial = (e) => {
+    e.preventDefault();
+    localStorage.setItem("show", true);
+    setTimeout(() => {
+      return history.push("/");
+    }, 200);
+  };
+```
