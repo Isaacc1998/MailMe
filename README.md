@@ -1,6 +1,37 @@
-# MailMe
+# [Mailme Live](https://mailmeaa.herokuapp.com/)
 
-https://mailmeaa.herokuapp.com/
+# Technologies { 
+   ## Nodemailer 
+     * docs link 
+     * description of the technology 
+     * code example 
+   ## Intro.js 
+     * docs link 
+     * description of the technology 
+     * code example 
+     
+     ### Start Vs Skip Tutorial -> set key 'show' for desired output inside of local storage on button click
+     
+     ```
+        const handleSkipTutorial = (e) => {
+           e.preventDefault();
+           localStorage.setItem("show", false);
+           
+           setTimeout(() => {
+            return history.push("/");
+           }, 200);
+       };
+       
+       const handleTutorial = (e) => {
+         e.preventDefault();
+         localStorage.setItem("show", true);
+         
+         setTimeout(() => {
+           return history.push("/");
+         }, 200);
+       };
+    ```
+
 ## Code snippets:
 
 ### - Obtains the current mailing list via the URL's pathname params asynchronously by dispatching an action to a thunk, then hydrates the data only after the thunk's fetch is successful, showing each individual email subscribed as well as a button to remove the email.
@@ -74,21 +105,4 @@ router.delete("/:mailinglistId", async (req, res, next) => {
 });
 ```
 
-### The handler method for starting tutorial and skipping tutorial buttons. Setting a key 'show' to false in the local storage when clicked skip tutorial and setting it to true when clicked start tutorial. 
 
-```javascript
-  const handleSkipTutorial = (e) => {
-    e.preventDefault();
-    localStorage.setItem("show", false);
-    setTimeout(() => {
-      return history.push("/");
-    }, 200);
-  };
-  const handleTutorial = (e) => {
-    e.preventDefault();
-    localStorage.setItem("show", true);
-    setTimeout(() => {
-      return history.push("/");
-    }, 200);
-  };
-```
