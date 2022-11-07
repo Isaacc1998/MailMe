@@ -1,36 +1,36 @@
 # [Mailme Live](https://mailmeaa.herokuapp.com/)
 
-# Technologies { 
-   ## Nodemailer 
-     * docs link 
-     * description of the technology 
-     * code example 
-   ## Intro.js 
-     * docs link 
-     * description of the technology 
-     * code example 
+# Technologies 
+## Nodemailer 
+  * docs link 
+  * description of the technology 
+  * code example 
+## Intro.js 
+  * docs link 
+  * description of the technology 
+  * code example 
      
-     ### Start Vs Skip Tutorial -> set key 'show' for desired output inside of local storage on button click
+### Start Vs Skip Tutorial -> set key 'show' for desired output inside of local storage on button click
      
-     ```
-        const handleSkipTutorial = (e) => {
-           e.preventDefault();
-           localStorage.setItem("show", false);
-           
-           setTimeout(() => {
-            return history.push("/");
-           }, 200);
-       };
-       
-       const handleTutorial = (e) => {
-         e.preventDefault();
-         localStorage.setItem("show", true);
-         
-         setTimeout(() => {
-           return history.push("/");
-         }, 200);
-       };
-    ```
+```javascript
+  const handleSkipTutorial = (e) => {
+     e.preventDefault();
+     localStorage.setItem("show", false);
+
+     setTimeout(() => {
+      return history.push("/");
+     }, 200);
+ };
+
+ const handleTutorial = (e) => {
+   e.preventDefault();
+   localStorage.setItem("show", true);
+
+   setTimeout(() => {
+     return history.push("/");
+   }, 200);
+ };
+```
 
 ## Code snippets:
 
