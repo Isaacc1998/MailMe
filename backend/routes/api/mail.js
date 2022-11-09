@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const cors = require("cors");
 const sendEmail = require("../../utils/sendEmail");
+var cron = require('node-cron');
 
 router.post("/sendmail", cors(), async (req, res) => {
-  const { body, addresses, title } = req.body;
+  const { body, addresses, title, time } = req.body;
   try {
     const to = addresses;
     const from = process.env.MAIL_FROM;
@@ -24,8 +25,7 @@ router.post("/sendmail", cors(), async (req, res) => {
                       </ul>
                       <img height="250px" src="cid:logo"/>
                     `;
-
-    await sendEmail(subject, message, to, from);
+    await sendEmail(subject, message, to, from, time);
     return res.json({ status: "sucess" });
   } catch (error) {
       return error.message;
