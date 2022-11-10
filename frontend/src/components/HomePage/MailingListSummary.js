@@ -44,9 +44,15 @@ const MailingListSummary = ({ mailingLists }) => {
       element: ".number-of-emails-sent-out",
       intro: "This is number of emails sent out",
     },
+    {
+      element: ".create-new-mailing-list",
+      intro: "This is to create a new mailing list",
+      position: "bottom",
+    },
   ];
   const onExit = () => {
     localStorage.setItem("show", false);
+    localStorage.setItem("show2", true);
     localStorage.setItem("show3", true);
   };
   useEffect(() => {

@@ -20,18 +20,17 @@ function NavBar() {
   const currentUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const steps = [
-    {
-      element: ".create-new-mailing-list",
-      intro: "This is to create a new mailing list",
-      position: "bottom",
-    },
-  ];
-  const onExit = () => {
-    localStorage.setItem("show3", false);
-    localStorage.setItem("show2", true);
-  };
+  // const steps = [
+  //   {
+  //     element: ".create-new-mailing-list",
+  //     intro: "This is to create a new mailing list",
+  //     position: "bottom",
+  //   },
+  // ];
+  // const onExit = () => {
+  //   localStorage.setItem("show3", false);
+  //   localStorage.setItem("show2", true);
+  // };
 
   return (
     <>
@@ -70,11 +69,11 @@ function NavBar() {
           </Box>
         </div>
       </div>
-      {localStorage.getItem("show3") === "true" ? (
+      {/* {localStorage.getItem("show3") === "true" ? (
         <Steps enabled={true} steps={steps} initialStep={0} onExit={onExit} />
       ) : (
         <div></div>
-      )}
+      )} */}
     </>
   );
 }
