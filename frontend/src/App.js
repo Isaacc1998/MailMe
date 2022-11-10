@@ -3,6 +3,7 @@ import { Switch } from "react-router-dom";
 import { Route, Redirect } from "react-router-dom";
 
 import Splash from "./components/Splash/Splash";
+import SplashPage from "./components/SplashPage/SplashPage";
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupFormModal from "./components/SessionForms/SignupFormModal";
 import HomePage from "./components/HomePage/HomePage";
@@ -47,7 +48,7 @@ function App() {
             {/* <Route exact path="/login" component={Splash} /> */}
 
             <Route exact path="/login" component={Splash} />
-
+            <Route exact path="/about" component={SplashPage} />
             <Route path="/" component={HomePage} />
           </Switch>
         </>

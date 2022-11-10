@@ -27,6 +27,10 @@ import CreateEmailFormModal from "../CreateEmailForm/CreateEmailFormModal";
 import AddEmailToList from "../AddEmailToList/AddEmailToList";
 import EditNameModal from "./EditName";
 import "./HomePage.css";
+import { Steps } from "intro.js-react";
+import introJs from "intro.js";
+
+import "intro.js/introjs.css";
 
 const OneMailingList = () => {
   const toast = useToast();
@@ -34,12 +38,81 @@ const OneMailingList = () => {
   const [emails, setEmails] = useState();
   const dispatch = useDispatch();
   const { _id } = useParams();
-  console.log(_id, "paranms is this");
   const currentMailingList = useSelector(
     (state) => state.mailingLists.currentMailingList
   );
-
+  const steps = [
+    {
+      element: ".step-one",
+      intro: "These are emails inside the mailing list",
+    },
+    {
+      element: ".two",
+      intro: "This is to delete an email subscribed to the mailing list",
+      position: "bottom",
+    },
+    {
+      element: ".three",
+      intro: "This is to add subscriber to this mailing list",
+      position: "bottom",
+    },
+    {
+      element: ".four",
+      intro: "This is to create and send a mail ",
+      position: "bottom",
+    },
+    {
+      element: ".five",
+      intro:
+        "Copy this link and send it to any subscriber so that the subscriber can add themselves to the mailing list",
+      position: "bottom",
+    },
+  ];
+  const onExit = () => {
+    localStorage.setItem("show2", false);
+  };
+  // localStorage.setItem("show3", true);
+  // if (localStorage.getItem("show2") === "false") {
+  //   localStorage.setItem("show3", false);
+  // }
   useEffect(() => {
+    // if (
+    //   // localStorage.getItem("show2") === "true" &&
+    //   localStorage.getItem("show3") === "true"
+    // ) {
+    //   introJs()
+    //     .setOptions({
+    //       steps: [
+    //         {
+    //           element: document.querySelector(".step-one"),
+    //           intro: "This is Emails inside the mailing list",
+    //         },
+    //         {
+    //           element: document.querySelector(".two"),
+    //           intro: "This is the the delete button",
+    //           position: "bottom",
+    //         },
+    //         {
+    //           element: document.querySelector(".three"),
+    //           intro: "This is to add subscribers to this mailing list",
+    //           position: "bottom",
+    //         },
+    //         {
+    //           element: document.querySelector(".four"),
+    //           intro: "This is to create an email form",
+    //           position: "bottom",
+    //         },
+    //         {
+    //           element: document.querySelector(".five"),
+    //           intro:
+    //             "Copy this link and send it to any subscriber so that the subscriber can add themselves to the mailing list",
+    //           position: "bottom",
+    //         },
+    //       ],
+    //     })
+    //     .start();
+    // localStorage.setItem("show2", false);
+    // }
     if (_id)
       dispatch(getMailingList(_id)).then(() => {
         setLoading(false);
@@ -48,7 +121,7 @@ const OneMailingList = () => {
 
   if (loading || !currentMailingList) return <div></div>;
   return (
-    <div>
+    <div className="step-one">
       <Heading fontSize={30} m={5} textAlign="left">
         List of subscribers for "
         <Text sx={{ display: "inline", fontWeight: 700 }} color="red">
@@ -80,7 +153,7 @@ const OneMailingList = () => {
                       <Box
                         as={Button}
                         colorScheme="red"
-                        className="deleteEmail"
+                        className="two"
                         onClick={() => {
                           console.log("deletin");
                           console.log(mail, "thisss");
@@ -124,9 +197,13 @@ const OneMailingList = () => {
         </Table>
       </TableContainer>
       <Box textAlign="center">
-        <AddEmailToList />
+        <div className="three">
+          <AddEmailToList />
+        </div>
         <Spacer m={5} />
-        <CreateEmailFormModal />
+        <div className="four">
+          <CreateEmailFormModal />
+        </div>
         <br />
         {/* <Link to={`/subscribe/${_id}`}> */}
         <Input
@@ -136,6 +213,7 @@ const OneMailingList = () => {
         />
         <br />
         <Button
+          className="five"
           mt={2}
           colorScheme="teal"
           onClick={() => {
@@ -155,6 +233,11 @@ const OneMailingList = () => {
         </Button>
         {/* </Link> */}
       </Box>
+      {localStorage.getItem("show2") === "true" ? (
+        <Steps enabled={true} steps={steps} initialStep={0} onExit={onExit} />
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };

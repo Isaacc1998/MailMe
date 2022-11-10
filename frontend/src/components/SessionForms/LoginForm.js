@@ -12,7 +12,7 @@ import {
   Center,
   Text,
 } from "@chakra-ui/react";
-
+import SplashPage from "../SplashPage/SplashPage";
 import { login, clearSessionErrors } from "../../store/session";
 import HomePage from "../HomePage/HomePage";
 
@@ -75,8 +75,8 @@ function LoginForm() {
           />
         </form>
       ) : (
-        <Redirect to="/">
-          <HomePage />
+        <Redirect to="/about">
+          <SplashPage />
         </Redirect>
       )}
     </>

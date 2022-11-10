@@ -24,7 +24,9 @@ import MailingListSummary from "./MailingListSummary";
 import OneMailingList from "./OneMailingList";
 import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
 import RecentPosts from "../RecentPosts/RecentPosts";
-function HomePage() {
+import introJs from "intro.js";
+import "intro.js/introjs.css";
+function HomePage({ show }) {
   const dispatch = useDispatch();
   const location = useLocation();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
@@ -35,15 +37,19 @@ function HomePage() {
   useEffect(() => {
     dispatch(getUserMailingLists());
   }, [dispatch]);
-
   if (!currentUser) return <div></div>;
+
+  // console.log(location.state.show, "homepage showewooorewrwe");
   return (
     <>
       <NavBar />
       <div className="home-container">
         <div className="left-home-container">
           {location.pathname !== "/" ? (
-            <MailingListSummary mailingLists={mailingLists} />
+            <MailingListSummary
+              show={localStorage.getItem("show")}
+              mailingLists={mailingLists}
+            />
           ) : (
             <RecentPosts />
           )}
@@ -54,7 +60,10 @@ function HomePage() {
             <div>Content of Mailing List</div> */}
             <div className="inner-bottom-right">
               <Route exact path="/">
-                <MailingListSummary mailingLists={mailingLists} />
+                <MailingListSummary
+                  show={localStorage.getItem("show")}
+                  mailingLists={mailingLists}
+                />
               </Route>
               <Route path="/mailingList/:_id">
                 <OneMailingList />

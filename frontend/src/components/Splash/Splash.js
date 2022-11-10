@@ -15,6 +15,8 @@ import Logo from "./Logo";
 import "./Splash.css";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
+import { useEffect } from "react";
+
 function Splash() {
   return (
     <>

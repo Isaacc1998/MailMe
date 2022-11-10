@@ -14,14 +14,18 @@ import {
   getUserMailingLists,
   updateMailingList,
 } from "../../store/mailinglist";
+import introJs from "intro.js";
+import "intro.js/introjs.css";
 function ButtonForAddEmail({ onClose }) {
   const [email, setEmail] = useState("");
   const toast = useToast();
   const dispatch = useDispatch();
+
   const currentMailingList = useSelector(
     (state) => state.mailingLists.currentMailingList
   );
   const ref = useRef(null);
+
   // console.log(currentMailingList, " this is current mailing List");
   const addSubscriberSubmit = (e) => {
     e.preventDefault();
@@ -54,8 +58,22 @@ function ButtonForAddEmail({ onClose }) {
         });
       });
   };
-
+  // localStorage.setItem("show", true);
   useEffect(() => {
+    //   if (localStorage.getItem("show") === "true") {
+    //     introJs()
+    //       .setOptions({
+    //         steps: [
+    //           {
+    //             element: document.querySelector(".addSubscriber"),
+    //             intro: "This is to add subsciber/email into the mailing list",
+    //             position: "bottom",
+    //           },
+    //         ],
+    //       })
+    //       .start();
+    //     localStorage.setItem("show", false);
+    //   }
     ref.current.focus();
     console.log(ref.current, "LOOK ME MA");
   }, []);
@@ -86,7 +104,12 @@ function ButtonForAddEmail({ onClose }) {
           />
         </FormLabel>
 
-        <Button mt={3} colorScheme="teal" type="submit">
+        <Button
+          className="addSubscriber"
+          mt={3}
+          colorScheme="teal"
+          type="submit"
+        >
           Add Subscriber
         </Button>
       </form>
