@@ -17,6 +17,11 @@ function CreateEmailForm({ onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [email, setEmail] = useState("");
+  const [seconds, setSeconds] = useState("*")
+  const [minutes, setMinutes] = useState("*")
+  const [hour, setHour] = useState("*")
+  const [dayOfMonth, setDayOfMonth] = useState("*")
+  const [month, setMonth] = useState("*")
   const dispatch = useDispatch();
   const currentList = useSelector(
     (state) => state.mailingLists.currentMailingList
@@ -38,10 +43,11 @@ function CreateEmailForm({ onClose }) {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    let time = `${seconds} ${minutes} ${hour} ${dayOfMonth} ${month} *`
     let addresses = currentList.emails;
     await jwtFetch("/api/mail/sendmail", {
       method: "POST",
-      body: JSON.stringify({ body, addresses, title }),
+      body: JSON.stringify({ body, addresses, title, time }),
     });
     return dispatch(
       createPost({
