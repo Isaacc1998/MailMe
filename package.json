@@ -23,5 +23,8 @@
   "homepage": "https://github.com/Isaacc1998/MailMe#readme",
   "engines": {
     "node": "16.x"
+  },
+  "dependencies": {
+    "node-cron": "^3.0.2"
   }
 }

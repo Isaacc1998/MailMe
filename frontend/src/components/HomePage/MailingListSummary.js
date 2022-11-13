@@ -13,7 +13,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { emptyCurrList } from "../../store/mailinglist";
 import { removeMailingList } from "../../store/mailinglist";
@@ -30,6 +30,7 @@ const MailingListSummary = ({ mailingLists }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+
 
   const steps = [
     {
@@ -55,6 +56,13 @@ const MailingListSummary = ({ mailingLists }) => {
     localStorage.setItem("show2", true);
     localStorage.setItem("show3", true);
   };
+
+  let postsCountArray = useSelector((state) => state.posts.posts);
+  if (!Array.isArray(postsCountArray)) postsCountArray = [postsCountArray];
+  console.log(postsCountArray, "length");
+  console.log(location, "location");
+  console.log(mailingLists, "this is mailingLists");
+
   useEffect(() => {
     // if (localStorage.getItem("show") === "true") {
     //   introJs()
@@ -149,8 +157,18 @@ const MailingListSummary = ({ mailingLists }) => {
                     </Td>
 
                     {location.pathname === "/" ? (
-                      <Td className="number-of-emails-sent-out" isNumeric>
-                        {list.emails.length}
+
+                      <Td
+                        fontWeight={
+                          location.pathname.includes(list._id) ? 700 : 400
+                        }
+                        fontSize="20px"
+                        isNumeric
+                      >
+                        {postsCountArray &&
+                          postsCountArray.filter((e) => e.list?._id == list._id)
+                            .length}
+
                       </Td>
                     ) : null}
                     {/* <Td>10</Td> */}
