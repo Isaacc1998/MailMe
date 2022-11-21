@@ -23,3 +23,26 @@
   /* border: 1px solid black; */
   width: 99vw;
 }
+
+.search-container {
+  margin-right: 3.5%;
+}
+
+#search-list {
+  position: absolute;
+  cursor: pointer;
+}
+
+.search-term-container {
+  display: flex;
+  border-radius: 0.5rem;
+  background-color: white;
+  padding: 10px;
+  width: 300px;
+}
+.search-term {
+  margin-left: 12px;
+}
+.search-term-container:hover {
+  background-color: rgb(225, 226, 227);
+}
