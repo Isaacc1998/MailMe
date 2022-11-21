@@ -22,6 +22,7 @@ import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons";
 import { Link, Route, useHistory, useLocation } from "react-router-dom";
 import MailingListSummary from "./MailingListSummary";
 import OneMailingList from "./OneMailingList";
+import SearchList from "./SearchList";
 import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
 import RecentPosts from "../RecentPosts/RecentPosts";
 import introJs from "intro.js";
@@ -45,7 +46,7 @@ function HomePage({ show }) {
       <NavBar />
       <div className="home-container">
         <div className="left-home-container">
-          {location.pathname !== "/" ? (
+          {!["/", "/search"].includes(location.pathname) ? (
             <MailingListSummary
               show={localStorage.getItem("show")}
               mailingLists={mailingLists}
@@ -67,6 +68,9 @@ function HomePage({ show }) {
               </Route>
               <Route path="/mailingList/:_id">
                 <OneMailingList />
+              </Route>
+              <Route path="/search">
+                <SearchList />
               </Route>
             </div>
           </div>
