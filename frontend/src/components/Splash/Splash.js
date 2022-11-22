@@ -18,6 +18,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
 
 function Splash() {
+  localStorage.setItem("show", false);
   return (
     <>
       <div className="container">

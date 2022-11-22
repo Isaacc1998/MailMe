@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/react";
+import introJs from "intro.js";
 import { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import HomePage from "../HomePage/HomePage";
@@ -7,7 +8,7 @@ import LogoSplashPage from "./LogoSplashPage";
 
 import "./SplashPage.css";
 function SplashPage() {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const history = useHistory();
   const handleSkipTutorial = (e) => {
     e.preventDefault();

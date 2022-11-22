@@ -24,39 +24,71 @@ import { Steps } from "intro.js-react";
 
 import introJs from "intro.js";
 import "intro.js/introjs.css";
-import { useState } from "react";
 
 const MailingListSummary = ({ mailingLists }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 
-
-  const steps = [
-    {
-      element: ".list-name",
-      intro: "This is the mailing list name",
-    },
-    {
-      element: ".list-number-emails",
-      intro: "This is number of emails/subscribers in the mailing list",
-    },
-    {
-      element: ".number-of-emails-sent-out",
-      intro: "This is number of emails sent out",
-    },
-    {
-      element: ".create-new-mailing-list",
-      intro: "This is to create a new mailing list",
-      position: "bottom",
-    },
-  ];
-  const onExit = () => {
+  // const steps = [
+  //   {
+  //     element: ".list-name",
+  //     intro: "This is the mailing list name",
+  //     position: "bottom",
+  //   },
+  //   {
+  //     element: ".list-number-emails",
+  //     intro: "This is number of emails/subscribers in the mailing list",
+  //     position: "bottom",
+  //   },
+  //   {
+  //     element: ".number-of-emails-sent-out",
+  //     intro: "This is number of emails sent out",
+  //     position: "bottom",
+  //   },
+  //   {
+  //     element: ".create-new-mailing-list",
+  //     intro: "This is to create a new mailing list",
+  //     position: "bottom",
+  //   },
+  // ];
+  // const onExit = () => {
+  //   // setEnabled(false);
+  //   localStorage.setItem("show", false);
+  //   localStorage.setItem("show2", true);
+  //   // localStorage.setItem("show3", true);
+  // };
+  let intro = introJs();
+  intro.setOptions({
+    steps: [
+      {
+        element: ".list-name",
+        intro: "This is the mailing list name",
+        position: "bottom",
+      },
+      {
+        element: ".list-number-emails",
+        intro: "This is number of emails/subscribers in the mailing list",
+        position: "bottom",
+      },
+      {
+        element: ".number-of-emails-sent-out",
+        intro: "This is number of emails sent out",
+        position: "bottom",
+      },
+      {
+        element: ".create-new-mailing-list",
+        intro: "This is to create a new mailing list",
+        position: "bottom",
+      },
+    ],
+  });
+  setTimeout(() => {
+    if (localStorage.getItem("show") === "true") {
+      intro.start();
+    }
     localStorage.setItem("show", false);
-    localStorage.setItem("show2", true);
-    localStorage.setItem("show3", true);
-  };
-
+  }, 500);
   let postsCountArray = useSelector((state) => state.posts.posts);
   if (!Array.isArray(postsCountArray)) postsCountArray = [postsCountArray];
   console.log(postsCountArray, "length");
@@ -64,32 +96,6 @@ const MailingListSummary = ({ mailingLists }) => {
   console.log(mailingLists, "this is mailingLists");
 
   useEffect(() => {
-    // if (localStorage.getItem("show") === "true") {
-    //   introJs()
-    //     .setOptions({
-    //       steps: [
-    //         {
-    //           element: document.querySelector(".list-name"),
-    //           intro: "This is the mailing list name",
-    //         },
-    //         {
-    //           element: document.querySelector(".list-number-emails"),
-    //           intro: "This is number of emails/subscribers in the mailing list",
-    //         },
-    //         {
-    //           element: document.querySelector(".number-of-emails-sent-out"),
-    //           intro: "This is number of emails sent out",
-    //         },
-    //       ],
-    //     })
-    //     .start();
-    //   // introJs().goToStep(1).start();
-    //   localStorage.setItem("show", false);
-    //   localStorage.setItem("show2", true);
-    // }
-
-    // dispatch(emptyCurrList());
-    // introJs().addHints();
     dispatch({
       type: "mailinglist/EMPTY_CURR_LIST",
     });
@@ -157,8 +163,8 @@ const MailingListSummary = ({ mailingLists }) => {
                     </Td>
 
                     {location.pathname === "/" ? (
-
                       <Td
+                        className="number-of-emails-sent-out"
                         fontWeight={
                           location.pathname.includes(list._id) ? 700 : 400
                         }
@@ -168,7 +174,6 @@ const MailingListSummary = ({ mailingLists }) => {
                         {postsCountArray &&
                           postsCountArray.filter((e) => e.list?._id == list._id)
                             .length}
-
                       </Td>
                     ) : null}
                     {/* <Td>10</Td> */}
@@ -186,11 +191,16 @@ const MailingListSummary = ({ mailingLists }) => {
           </Tbody>
         </Table>
       </TableContainer>
-      {localStorage.getItem("show") === "true" ? (
-        <Steps enabled={true} steps={steps} initialStep={0} onExit={onExit} />
+      {/* {localStorage.getItem("show") === "true" ? (
+        <Steps
+          enabled={localStorage.getItem("show")}
+          steps={steps}
+          initialStep={0}
+          onExit={onExit}
+        />
       ) : (
         <div></div>
-      )}
+      )} */}
     </>
   );
 };
