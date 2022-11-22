@@ -23,7 +23,7 @@ import "./HomePage.css";
 import { Steps } from "intro.js-react";
 
 import introJs from "intro.js";
-import "intro.js/introjs.css";
+import "./CustomIntrojs.css";
 
 const MailingListSummary = ({ mailingLists }) => {
   const dispatch = useDispatch();
