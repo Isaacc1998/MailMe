@@ -22,6 +22,7 @@ function SplashPage() {
     e.preventDefault();
     // setShow(true);
     localStorage.setItem("show", true);
+    localStorage.setItem("show3", true);
     setTimeout(() => {
       return history.push("/");
     }, 200);

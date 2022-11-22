@@ -41,40 +41,81 @@ const OneMailingList = () => {
   const currentMailingList = useSelector(
     (state) => state.mailingLists.currentMailingList
   );
-  const steps = [
-    {
-      element: ".step-one",
-      intro: "These are emails inside the mailing list",
-    },
-    {
-      element: ".two",
-      intro: "This is to delete an email subscribed to the mailing list",
-      position: "bottom",
-    },
-    {
-      element: ".three",
-      intro: "This is to add subscriber to this mailing list",
-      position: "bottom",
-    },
-    {
-      element: ".four",
-      intro: "This is to create and send a mail ",
-      position: "bottom",
-    },
-    {
-      element: ".five",
-      intro:
-        "Copy this link and send it to any subscriber so that the subscriber can add themselves to the mailing list",
-      position: "bottom",
-    },
-  ];
-  const onExit = () => {
-    localStorage.setItem("show2", false);
-  };
+  // const steps = [
+  // {
+  //   element: ".step-one",
+  //   intro: "These are emails inside the mailing list",
+  // },
+  // {
+  //   element: ".two",
+  //   intro: "This is to delete an email subscribed to the mailing list",
+  //   position: "bottom",
+  // },
+  // {
+  //   element: ".three",
+  //   intro: "This is to add subscriber to this mailing list",
+  //   position: "bottom",
+  // },
+  // {
+  //   element: ".four",
+  //   intro: "This is to create and send a mail ",
+  //   position: "bottom",
+  // },
+  // {
+  //   element: ".five",
+  //   intro:
+  //     "Copy this link and send it to any subscriber so that the subscriber can add themselves to the mailing list",
+  //   position: "bottom",
+  // },
+  // ];
+
+  let intro = introJs();
+  intro.setOptions({
+    steps: [
+      {
+        element: ".step-one",
+        intro: "These are emails inside the mailing list",
+      },
+      {
+        element: ".two",
+        intro: "This is to delete an email subscribed to the mailing list",
+        position: "bottom",
+      },
+      {
+        element: ".three",
+        intro: "This is to add subscriber to this mailing list",
+        position: "bottom",
+      },
+      {
+        element: ".four",
+        intro: "This is to create and send a mail ",
+        position: "bottom",
+      },
+      {
+        element: ".five",
+        intro:
+          "Copy this link and send it to any subscriber so that the subscriber can add themselves to the mailing list",
+        position: "bottom",
+      },
+    ],
+  });
+  // const onExit = () => {
+  //   localStorage.setItem("show2", false);
+  // };
   // localStorage.setItem("show3", true);
   // if (localStorage.getItem("show2") === "false") {
   //   localStorage.setItem("show3", false);
   // }
+  setTimeout(() => {
+    if (
+      localStorage.getItem("show2") === "true" &&
+      localStorage.getItem("show3") === "true"
+    ) {
+      intro.start();
+    }
+    localStorage.setItem("show2", false);
+    localStorage.setItem("show3", false);
+  }, 500);
   useEffect(() => {
     // if (
     //   // localStorage.getItem("show2") === "true" &&
@@ -233,11 +274,11 @@ const OneMailingList = () => {
         </Button>
         {/* </Link> */}
       </Box>
-      {localStorage.getItem("show2") === "true" ? (
+      {/* {localStorage.getItem("show2") === "true" ? (
         <Steps enabled={true} steps={steps} initialStep={0} onExit={onExit} />
       ) : (
         <div></div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -88,6 +88,7 @@ const MailingListSummary = ({ mailingLists }) => {
       intro.start();
     }
     localStorage.setItem("show", false);
+    localStorage.setItem("show2", true);
   }, 500);
   let postsCountArray = useSelector((state) => state.posts.posts);
   if (!Array.isArray(postsCountArray)) postsCountArray = [postsCountArray];
