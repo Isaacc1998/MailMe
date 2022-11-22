@@ -76,6 +76,7 @@ const OneMailingList = () => {
       {
         element: ".step-one",
         intro: "These are emails inside the mailing list",
+        position: "bottom",
       },
       {
         element: ".two",
@@ -163,7 +164,7 @@ const OneMailingList = () => {
 
   if (loading || !currentMailingList) return <div></div>;
   return (
-    <div className="step-one">
+    <>
       <Heading fontSize={30} m={5} textAlign="left">
         List of subscribers for "
         <Text sx={{ display: "inline", fontWeight: 700 }} color="red">
@@ -175,69 +176,75 @@ const OneMailingList = () => {
           oldName={currentMailingList.name}
         />
       </Heading>
-      <TableContainer mb="50px">
-        <Table variant="striped" colorScheme="teal">
-          {/* <TableCaption>{currentMailingList.name}</TableCaption> */}
-          <Thead>
-            <Tr>
-              <Th>Email Name</Th>
-              {/* <Th># of Emails</Th>
-              <Th>Emails sent out</Th> */}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {currentMailingList &&
-              currentMailingList.emails.map((mail) => {
-                return (
-                  <Tr>
-                    <Td fontSize="20px">{mail}</Td>
-                    <Td isNumeric>
-                      <Box
-                        as={Button}
-                        colorScheme="red"
-                        className="two"
-                        onClick={() => {
-                          console.log("deletin");
-                          console.log(mail, "thisss");
-                          console.log(mail.replace("\n", ""), "thisss");
-                          return dispatch(
-                            removeEmail({
-                              mailingListId: currentMailingList._id,
-                              email: mail.replace("\n", ""),
-                            })
-                          ).then(() => {
-                            // setEmails(currentMailingList.emails);
-
-                            toast({
-                              title: `Email ${mail} has been deleted.`,
-                              position: "bottom",
-
-                              status: "error",
-                              duration: 5000,
-                              isClosable: true,
-                            });
-
-                            dispatch(getMailingList(_id));
-                            dispatch(getUserMailingLists());
-                          });
-                        }}
-                      >
-                        Remove Email
-                      </Box>
-                    </Td>
-                  </Tr>
-                );
-              })}
-            {currentMailingList.emails.length === 0 && (
+      <div className="step-one">
+        <TableContainer mb="50px">
+          <Table
+            variant="striped"
+            colorScheme="yellow"
+            boxShadow="1px 1px 2.5px 2.5px lightgray"
+          >
+            {/* <TableCaption>{currentMailingList.name}</TableCaption> */}
+            <Thead>
               <Tr>
-                <Td textAlign="center" fontSize="30px" fontWeight={500}>
-                  You have no emails! Add one below!
-                </Td>
+                <Th>Email Name</Th>
+                {/* <Th># of Emails</Th>
+              <Th>Emails sent out</Th> */}
               </Tr>
-            )}
-          </Tbody>
-        </Table>
-      </TableContainer>
+            </Thead>
+            <Tbody>
+              {currentMailingList &&
+                currentMailingList.emails.map((mail) => {
+                  return (
+                    <Tr>
+                      <Td fontSize="20px">{mail}</Td>
+                      <Td isNumeric>
+                        <Box
+                          as={Button}
+                          colorScheme="red"
+                          className="two"
+                          onClick={() => {
+                            console.log("deletin");
+                            console.log(mail, "thisss");
+                            console.log(mail.replace("\n", ""), "thisss");
+                            return dispatch(
+                              removeEmail({
+                                mailingListId: currentMailingList._id,
+                                email: mail.replace("\n", ""),
+                              })
+                            ).then(() => {
+                              // setEmails(currentMailingList.emails);
+
+                              toast({
+                                title: `Email ${mail} has been deleted.`,
+                                position: "bottom",
+
+                                status: "error",
+                                duration: 5000,
+                                isClosable: true,
+                              });
+
+                              dispatch(getMailingList(_id));
+                              dispatch(getUserMailingLists());
+                            });
+                          }}
+                        >
+                          Remove Email
+                        </Box>
+                      </Td>
+                    </Tr>
+                  );
+                })}
+              {currentMailingList.emails.length === 0 && (
+                <Tr>
+                  <Td textAlign="center" fontSize="30px" fontWeight={500}>
+                    You have no emails! Add one below!
+                  </Td>
+                </Tr>
+              )}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </div>
       <Box textAlign="center">
         <div className="three">
           <AddEmailToList />
@@ -280,7 +287,7 @@ const OneMailingList = () => {
       ) : (
         <div></div>
       )} */}
-    </div>
+    </>
   );
 };
 export default OneMailingList;

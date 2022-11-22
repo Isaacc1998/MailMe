@@ -13,6 +13,7 @@
   position: fixed;
   overflow-y: scroll;
   max-height: 100%;
+  background-color: white;
   border-right: 1px solid black;
   padding: 20px;
   padding-top: 140px;

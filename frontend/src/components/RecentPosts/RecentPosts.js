@@ -32,14 +32,18 @@ const RecentPosts = () => {
   }, [dispatch]);
   return (
     <Box mt={4}>
-      <Heading mb={6}>Recent Posts</Heading>
       {filteredPosts.length > 0 &&
         filteredPosts.map((pst) => (
           <Box
             shadow="lg"
             p={10}
             mb={5}
-            sx={{ border: "1px solid gray", borderRadius: "10px" }}
+            sx={{
+              border: "1px solid lightgray",
+              borderRadius: "10px",
+              backgroundColor: "white",
+              boxShadow: "1px 1px 2.5px 2.5px lightgray;",
+            }}
             onClick={() => {
               setTimeout(() => {
                 history.push(`/mailingList/${pst.list._id}`);
@@ -47,11 +51,11 @@ const RecentPosts = () => {
             }}
             _hover={{
               cursor: "pointer",
-              backgroundColor: "#B2F5EA",
+              backgroundColor: "#fffcc6",
             }}
             _active={{
               transform: "scale(0.95)",
-              backgroundColor: "#B2F5EA",
+              backgroundColor: "#fffcc6",
             }}
           >
             <Heading>{pst.title}</Heading>
