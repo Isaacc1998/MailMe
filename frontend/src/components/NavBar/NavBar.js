@@ -9,6 +9,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Heading,
 } from "@chakra-ui/react";
 import { ArrowBackIcon, ArrowForwardIcon, SearchIcon } from "@chakra-ui/icons";
 import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingListModal";
@@ -20,7 +21,7 @@ import introJs from "intro.js";
 import "intro.js/introjs.css";
 import { useEffect, useState } from "react";
 import { getUserMailingLists } from "../../store/mailinglist";
-
+import { useLocation } from "react-router-dom";
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
   const currentMailingList = useSelector(
@@ -32,6 +33,14 @@ function NavBar() {
   const history = useHistory();
   const [searchTerm, setSearchTerm] = useState();
   const [searchList, setSearchList] = useState([]);
+  const location = useLocation();
+  let header = true;
+  if (location.pathname === "/") {
+    header = false;
+  }
+  // if (location.pathname === "/") {
+  //   header = <h1>Recent Posts</h1>;
+  // }
   // const steps = [
   //   {
   //     element: ".create-new-mailing-list",
@@ -43,6 +52,7 @@ function NavBar() {
   //   localStorage.setItem("show3", false);
   //   localStorage.setItem("show2", true);
   // };
+  console.log(location.pathname, "this is the pathname!!!!!");
 
   useEffect(() => {
     dispatch(getUserMailingLists());
@@ -102,12 +112,20 @@ function NavBar() {
           <Box ml="auto" pr="70px" mt={5} mr="0px"></Box>
         </Box>
         <div className="top-right-home-container">
-          <Link to="/">
-            <MailMeLogo />
-          </Link>
+          {header ? (
+            <Link to="/">
+              <MailMeLogo />
+            </Link>
+          ) : (
+            <Heading sx={{ marginLeft: "1%" }} mb={6}>
+              Recent Posts
+            </Heading>
+          )}
+
           <Box>
             <Button
               mr={5}
+              sx={{ backgroundColor: "white" }}
               onClick={() => {
                 history.go(-1);
               }}
@@ -115,6 +133,7 @@ function NavBar() {
               <ArrowBackIcon fontSize={25} />
             </Button>
             <Button
+              sx={{ backgroundColor: "white" }}
               onClick={() => {
                 history.go(1);
               }}

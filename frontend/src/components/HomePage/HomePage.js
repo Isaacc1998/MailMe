@@ -27,7 +27,7 @@ import CreateNewMailingListModal from "../CreateNewMailingList/CreateNewMailingL
 import RecentPosts from "../RecentPosts/RecentPosts";
 import introJs from "intro.js";
 import "intro.js/introjs.css";
-function HomePage({ show }) {
+function HomePage() {
   const dispatch = useDispatch();
   const location = useLocation();
   const mailingLists = useSelector((state) => state.mailingLists.lists);
@@ -48,7 +48,7 @@ function HomePage({ show }) {
         <div className="left-home-container">
           {!["/", "/search"].includes(location.pathname) ? (
             <MailingListSummary
-              show={localStorage.getItem("show")}
+              // show={localStorage.getItem("show")}
               mailingLists={mailingLists}
             />
           ) : (
@@ -61,10 +61,12 @@ function HomePage({ show }) {
             <div>Content of Mailing List</div> */}
             <div className="inner-bottom-right">
               <Route exact path="/">
+                {/* <div className="mailing-list-summary"> */}
                 <MailingListSummary
-                  show={localStorage.getItem("show")}
+                  // show={localStorage.getItem("show")}
                   mailingLists={mailingLists}
                 />
+                {/* </div> */}
               </Route>
               <Route path="/mailingList/:_id">
                 <OneMailingList />
