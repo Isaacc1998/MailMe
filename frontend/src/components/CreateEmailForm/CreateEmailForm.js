@@ -12,16 +12,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../store/posts";
 import ViewHistoryModel from "./ViewHistoryModal";
+import Calendar from "react-input-calendar";
+import "./ScheduleEmail.css";
 
 function CreateEmailForm({ onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [email, setEmail] = useState("");
-  const [seconds, setSeconds] = useState("*")
-  const [minutes, setMinutes] = useState("*")
-  const [hour, setHour] = useState("*")
-  const [dayOfMonth, setDayOfMonth] = useState("*")
-  const [month, setMonth] = useState("*")
+  const [seconds, setSeconds] = useState("*");
+  const [minutes, setMinutes] = useState("*");
+  const [hour, setHour] = useState("*");
+  const [dayOfMonth, setDayOfMonth] = useState("*");
+  const [month, setMonth] = useState("*");
   const dispatch = useDispatch();
   const currentList = useSelector(
     (state) => state.mailingLists.currentMailingList
@@ -43,7 +45,7 @@ function CreateEmailForm({ onClose }) {
 
   const handleSend = async (e) => {
     e.preventDefault();
-    let time = `${seconds} ${minutes} ${hour} ${dayOfMonth} ${month} *`
+    let time = `${seconds} ${minutes} ${hour} ${dayOfMonth} ${month} *`;
     let addresses = currentList.emails;
     await jwtFetch("/api/mail/sendmail", {
       method: "POST",
@@ -87,6 +89,7 @@ function CreateEmailForm({ onClose }) {
             placeholder="Enter Emails"
           />
         </FormLabel> */}
+        <Calendar format="DD/MM/YYYY" date="4-12-2014" />
         <FormLabel mt={3}>
           <Input
             type="text"
