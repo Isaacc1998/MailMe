@@ -29,6 +29,9 @@ const RecentPosts = () => {
   // ];
   useEffect(() => {
     dispatch(getAllPosts());
+    setTimeout(() => {
+      dispatch(getAllPosts());
+    }, 600);
   }, [dispatch, currentUserId]);
   return (
     <Box mt={4}>
