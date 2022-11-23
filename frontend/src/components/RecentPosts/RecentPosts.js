@@ -29,7 +29,7 @@ const RecentPosts = () => {
   // ];
   useEffect(() => {
     dispatch(getAllPosts());
-  }, [dispatch]);
+  }, [dispatch, currentUserId]);
   return (
     <Box mt={4}>
       {filteredPosts.length > 0 &&
