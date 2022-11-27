@@ -62,6 +62,11 @@ const MailingListSummary = ({ mailingLists }) => {
   intro.setOptions({
     steps: [
       {
+        element: ".recentPostsTutorial",
+        intro: "These are recent posts that were made",
+        // position: "top",
+      },
+      {
         element: ".list-name",
         intro: "This is the mailing list name",
         position: "bottom",
@@ -80,6 +85,10 @@ const MailingListSummary = ({ mailingLists }) => {
         element: ".create-new-mailing-list",
         intro: "This is to create a new mailing list",
         position: "bottom",
+      },
+      {
+        element: ".search-container",
+        intro: "This is to search mailing list",
       },
     ],
   });
@@ -136,11 +145,11 @@ const MailingListSummary = ({ mailingLists }) => {
                         : null
                     }
                   >
-                    <Td>
+                    <Td className="list-name">
                       <Box
                         // as={Link}
                         // to={`/mailingList/${list._id}`}
-                        className="list-name"
+                        // className="list-name"
                         _hover={{
                           color: "red",
                         }}

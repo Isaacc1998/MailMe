@@ -255,31 +255,33 @@ const OneMailingList = () => {
         </div>
         <br />
         {/* <Link to={`/subscribe/${_id}`}> */}
-        <Input
-          mt={5}
-          width="500px"
-          value={window.location.href.replace("mailingList", "subscribe")}
-        />
-        <br />
-        <Button
-          className="five"
-          mt={2}
-          colorScheme="teal"
-          onClick={() => {
-            navigator.clipboard.writeText(
-              window.location.href.replace("mailingList", "subscribe")
-            );
-            toast({
-              title: "Mailing List subscribe link has been copied.",
-              description: "The link has been copied to your clipboard.",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-            });
-          }}
-        >
-          Copy to Clipboard the Subscribe Link
-        </Button>
+        <div className="five">
+          <Input
+            mt={5}
+            width="500px"
+            value={window.location.href.replace("mailingList", "subscribe")}
+          />
+          <br />
+          <Button
+            // className="five"
+            mt={2}
+            colorScheme="teal"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                window.location.href.replace("mailingList", "subscribe")
+              );
+              toast({
+                title: "Mailing List subscribe link has been copied.",
+                description: "The link has been copied to your clipboard.",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+              });
+            }}
+          >
+            Copy to Clipboard the Subscribe Link
+          </Button>
+        </div>
         {/* </Link> */}
       </Box>
       {/* {localStorage.getItem("show2") === "true" ? (

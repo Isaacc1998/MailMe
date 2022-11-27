@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getAllPosts } from "../../store/posts";
+// import introJs from "intro.js";
+// import "../HomePage/CustomIntrojs.css";
 
 const RecentPosts = () => {
   //  get the useSelector state then map
@@ -27,6 +29,23 @@ const RecentPosts = () => {
   //   { name: "hi", content: "hurr" },
   //   { name: "bye", content: "gurr" },
   // ];
+  // let intro = introJs();
+  // intro.setOptions({
+  //   steps: [
+  //     {
+  //       element: ".recentPostsTutorial",
+  //       intro: "These are recent posts that were made",
+  //       position: "bottom",
+  //     },
+  //   ],
+  // });
+  // setTimeout(() => {
+  //   if (localStorage.getItem("show") === true) {
+  //     intro.start();
+  //   }
+  //   localStorage.setItem("show", false);
+  //   // localStorage.setItem("show2", true);
+  // }, 500);
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);

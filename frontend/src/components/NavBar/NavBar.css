@@ -16,7 +16,7 @@
 .top-right-home-container {
   margin-top: auto;
   margin-bottom: 1vh;
-
+  /* padding-right: 20px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,4 +45,9 @@
 }
 .search-term-container:hover {
   background-color: rgb(225, 226, 227);
+}
+
+.create-new-mailing-list {
+  width: 200px;
+  margin-right: 12px;
 }

@@ -52,7 +52,9 @@ function HomePage() {
               mailingLists={mailingLists}
             />
           ) : (
-            <RecentPosts />
+            <div className="recentPostsTutorial">
+              <RecentPosts />
+            </div>
           )}
         </div>
         <div className="right-home-container">
