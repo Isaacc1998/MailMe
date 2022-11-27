@@ -33,11 +33,11 @@ const MailingListSummary = ({ mailingLists }) => {
   let intro = introJs();
   intro.setOptions({
     steps: [
-      {
-        element: ".recentPostsTutorial",
-        intro: "These are recent posts that were made",
-        position: "bottom",
-      },
+      // {
+      //   element: ".recentPostsTutorial",
+      //   intro: "These are recent posts that were made",
+      //   position: "bottom",
+      // },
       {
         element: ".list-name",
         intro: "This is the mailing list name",
@@ -51,6 +51,11 @@ const MailingListSummary = ({ mailingLists }) => {
       {
         element: ".number-of-emails-sent-out",
         intro: "This is number of emails sent out",
+        position: "bottom",
+      },
+      {
+        element: ".delete-list-tutorial",
+        intro: "To delete a specific list",
         position: "bottom",
       },
       {
@@ -153,7 +158,7 @@ const MailingListSummary = ({ mailingLists }) => {
                     ) : null}
 
                     {location.pathname === "/" ? (
-                      <Td isNumeric>
+                      <Td className="delete-list-tutorial" isNumeric>
                         <ConfirmMailingListDelete list={list} />
                       </Td>
                     ) : null}

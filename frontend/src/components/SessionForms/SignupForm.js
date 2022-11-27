@@ -61,7 +61,7 @@ function SignupForm({ onClose }) {
       if (e.errors === undefined) onClose(); // if there is NO errors, close it
     });
   };
-  console.log(errors, "this errors");
+
   return (
     <>
       <form className="signup-form" onSubmit={usernameSubmit}>

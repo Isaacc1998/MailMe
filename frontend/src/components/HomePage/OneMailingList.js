@@ -203,9 +203,6 @@ const OneMailingList = () => {
                           colorScheme="red"
                           className="two"
                           onClick={() => {
-                            console.log("deletin");
-                            console.log(mail, "thisss");
-                            console.log(mail.replace("\n", ""), "thisss");
                             return dispatch(
                               removeEmail({
                                 mailingListId: currentMailingList._id,

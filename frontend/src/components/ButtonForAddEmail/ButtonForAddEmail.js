@@ -37,8 +37,6 @@ function ButtonForAddEmail({ onClose }) {
     dispatch(updateMailingList(obj))
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "this is data");
-
         onClose();
         toast({
           title: `User added!`,

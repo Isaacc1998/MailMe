@@ -51,11 +51,7 @@ function EditName({ id, oldName }) {
           <ModalHeader>Edit Name</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <form
-              onSubmit={() => {
-                console.log("yolo");
-              }}
-            >
+            <form>
               <Input
                 mt={-3}
                 mb={4}
