@@ -12,48 +12,26 @@ const RecentPosts = () => {
   const currentUserId = useSelector((state) => state.session.user._id);
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log(posts, "this is posts");
+
   if (!Array.isArray(posts)) posts = [posts];
+
   let filteredPosts =
     posts &&
     posts.filter((ele) => {
       if (!ele.list) return false;
       return currentUserId == ele.list.owner;
     });
-  console.log(filteredPosts.length, "LENGTH HERE");
-  // let posts = [
-  //   { name: "hi", content: "hurr" },
-  //   { name: "bye", content: "gurr" },
-  //   { name: "hi", content: "hurr" },
-  //   { name: "bye", content: "gurr" },
-  //   { name: "hi", content: "hurr" },
-  //   { name: "bye", content: "gurr" },
-  // ];
-  // let intro = introJs();
-  // intro.setOptions({
-  //   steps: [
-  //     {
-  //       element: ".recentPostsTutorial",
-  //       intro: "These are recent posts that were made",
-  //       position: "bottom",
-  //     },
-  //   ],
-  // });
-  // setTimeout(() => {
-  //   if (localStorage.getItem("show") === true) {
-  //     intro.start();
-  //   }
-  //   localStorage.setItem("show", false);
-  //   // localStorage.setItem("show2", true);
-  // }, 500);
+
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
+
   return (
     <Box mt={4}>
       {filteredPosts.length > 0 &&
         filteredPosts.map((pst) => (
           <Box
+            className="recentPostsTutorial"
             shadow="lg"
             p={10}
             mb={5}

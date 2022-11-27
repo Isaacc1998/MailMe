@@ -17,7 +17,7 @@ function ViewHistoryForm({ onClose, list, setTitle, setBody }) {
     e.preventDefault();
     onClose();
   };
-  console.log(posts);
+
   return (
     <div className="postsContainer">
       {posts &&

@@ -22,7 +22,7 @@ function LoginForm() {
   const errors = useSelector((state) => state.errors);
   const hasUser = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
-  console.log(hasUser);
+
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());

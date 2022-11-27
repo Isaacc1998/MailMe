@@ -58,9 +58,6 @@ function SignupForm({ onClose }) {
       password,
     };
     dispatch(signup(user)).then((e) => {
-      console.log(e, "this is e");
-      console.log(e.errors === undefined);
-      // console.log(e.errors.length);
       if (e.errors === undefined) onClose(); // if there is NO errors, close it
     });
   };

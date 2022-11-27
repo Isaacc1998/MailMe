@@ -8,7 +8,7 @@ const AddEmailToList = () => {
   const currentMailingList = useSelector(
     (state) => state.mailingLists.currentMailingList
   );
-  console.log(currentMailingList, "THIS THIS");
+
   return <ButtonForAddEmailModal />;
 };
 export default AddEmailToList;

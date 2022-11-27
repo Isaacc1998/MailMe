@@ -13,7 +13,7 @@ function CreateNewMailingList({ onClose }) {
 
   const createMailingListFormSubmit = (e) => {
     e.preventDefault();
-    console.log("email created");
+
     let emailsArray = emails.replace("\n", "").split(", "); // basically a bug happening where \n aka newline was not letting things be deleted. textarea lets you newline. so i just replace all new lines with empty string - william
     let obj = {
       name: name,
@@ -23,8 +23,6 @@ function CreateNewMailingList({ onClose }) {
     dispatch(createMailingList(obj))
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "this is submitted email data real quick");
-
         setTimeout(() => {
           onClose();
           history.push("/mailinglist/" + data._id);
@@ -39,7 +37,6 @@ function CreateNewMailingList({ onClose }) {
     // dispatch(createPost(params))
   };
   useEffect(() => {
-    console.log(ref.current, "this is current");
     ref.current.focus();
   }, []);
   return (

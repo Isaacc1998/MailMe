@@ -9,7 +9,6 @@ const Post = mongoose.model("Post");
 //posts index for when looking at posts history of mailing list
 router.get("/", async (req, res, next) => {
   let posts;
-  console.log("hit posts backend");
 
   try {
     posts = await Post.find()

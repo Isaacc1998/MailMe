@@ -40,35 +40,22 @@ function HomePage() {
   }, [dispatch]);
   if (!currentUser) return <div></div>;
 
-  // console.log(location.state.show, "homepage showewooorewrwe");
   return (
     <>
       <NavBar />
       <div className="home-container">
         <div className="left-home-container">
           {!["/", "/search"].includes(location.pathname) ? (
-            <MailingListSummary
-              // show={localStorage.getItem("show")}
-              mailingLists={mailingLists}
-            />
+            <MailingListSummary mailingLists={mailingLists} />
           ) : (
-            <div className="recentPostsTutorial">
-              <RecentPosts />
-            </div>
+            <RecentPosts />
           )}
         </div>
         <div className="right-home-container">
           <div className="bottom-right-home-container">
-            {/* <div>Bottom Right side container &nbsp;</div>
-            <div>Content of Mailing List</div> */}
             <div className="inner-bottom-right">
               <Route exact path="/">
-                {/* <div className="mailing-list-summary"> */}
-                <MailingListSummary
-                  // show={localStorage.getItem("show")}
-                  mailingLists={mailingLists}
-                />
-                {/* </div> */}
+                <MailingListSummary mailingLists={mailingLists} />
               </Route>
               <Route path="/mailingList/:_id">
                 <OneMailingList />

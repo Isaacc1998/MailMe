@@ -38,21 +38,6 @@ function NavBar() {
   if (location.pathname === "/") {
     header = false;
   }
-  // if (location.pathname === "/") {
-  //   header = <h1>Recent Posts</h1>;
-  // }
-  // const steps = [
-  //   {
-  //     element: ".create-new-mailing-list",
-  //     intro: "This is to create a new mailing list",
-  //     position: "bottom",
-  //   },
-  // ];
-  // const onExit = () => {
-  //   localStorage.setItem("show3", false);
-  //   localStorage.setItem("show2", true);
-  // };
-  console.log(location.pathname, "this is the pathname!!!!!");
 
   useEffect(() => {
     dispatch(getUserMailingLists());
