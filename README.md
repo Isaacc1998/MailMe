@@ -9,11 +9,87 @@
 - description of the technology
 - code example
 
-## [Intro.js](https://introjs.com/)
+## [Intro.js](https://introjs.com/) is a lightweight JavaScript library for creating powerful customer onboarding tours
 
-is a lightweight JavaScript library for creating step-by-step and powerful customer onboarding tours
+#### Engineer: Shawn Mallon
 
-### Tutorial or Not
+Email data is gathered via form; Inside of CreateEmailForm.js
+handleSend will dispatch a thunk request to /sendmail. The gathered data from the form is stored inside the body of the request.
+
+```
+const handleSend = async (e) => {
+    e.preventDefault();
+    let time = `${seconds} ${minutes} ${hour} ${dayOfMonth} ${month} *`
+    let addresses = currentList.emails;
+    await jwtFetch("/api/mail/sendmail", {
+      method: "POST",
+      body: JSON.stringify({ body, addresses, title, time }),
+    });
+    return dispatch(
+      createPost({
+        mailinglistId: currentList._id,
+        title: title,
+        content: body,
+      })
+    );
+  };
+```
+/sendmail will return a promise of sendEmail containing the data based from CreateEmailForm.js
+```
+router.post("/sendmail", cors(), async (req, res) => {
+  const { body, addresses, title, time } = req.body;
+  try {
+    const to = addresses;
+    const from = process.env.MAIL_FROM;
+    const subject = title;
+    const message = body  // message becomes an html esq doc 
+    await sendEmail(subject, message, to, from, time);
+    return res.json({ status: "sucess" });
+  } catch (error) {
+      return error.message;
+  }
+});
+```
+sendEmail will first create the transporter; which acts as the transfer agent using an SMTP(Simple Mail Transfer Protocol) port.
+The options object represents the contents of the email itself, and who it will be sent to.
+Once these are created, you can envoke the built in method "sendMail" on the transporter, passing options as an argument. 
+```
+const sendEmail = async (subject, message, to, from, time) => {
+    const transporter = nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: process.env.HOST_PORT,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    })
+
+    const options = {
+        from: from,
+        to: to,
+        subject: subject,
+        html: message,
+        attachments: [{
+            filename: 'temp.png',
+            path: __dirname + '/emailAttachments/temp.png',
+            cid: 'logo' 
+        }],
+    }
+    cron.schedule(`${time}`, () => {
+        transporter.sendMail(options, function(err, info) {
+            err
+             ? console.log(err) : console.log(info)
+        })
+    })
+}
+```
+
+## Tutorial or Not
+
+#### Engineer: KM
 
 set key 'show' for desired output inside of local storage on button click
 
