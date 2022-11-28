@@ -3,15 +3,9 @@
 
 # Technologies
 
-## Nodemailer
+## [Nodemailer](https://nodemailer.com/about/) is a module for Node.js applications to allow email sending
 
-- docs link
-- description of the technology
-- code example
-
-## [Intro.js](https://introjs.com/) is a lightweight JavaScript library for creating powerful customer onboarding tours
-
-#### Engineer: Shawn Mallon
+### Engineer: Shawn Mallon
 
 Email data is gathered via form; Inside of CreateEmailForm.js
 handleSend will dispatch a thunk request to /sendmail. The gathered data from the form is stored inside the body of the request.
@@ -86,10 +80,8 @@ const sendEmail = async (subject, message, to, from, time) => {
     })
 }
 ```
-
-## Tutorial or Not
-
-#### Engineer: KM
+## [Intro.js](https://introjs.com/) is a lightweight JavaScript library for creating powerful customer onboarding tours
+### Engineer: KM
 
 set key 'show' for desired output inside of local storage on button click
 
