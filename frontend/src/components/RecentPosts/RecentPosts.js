@@ -28,7 +28,7 @@ const RecentPosts = () => {
     setTimeout(() => {
       dispatch(getAllPosts());
     }, 600);
-  }, [dispatch, currentUserId]);
+  }, [dispatch, currentUserId, posts.length]);
 
   return (
     <>
