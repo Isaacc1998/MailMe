@@ -23,11 +23,11 @@ const RecentPosts = () => {
     });
 
   useEffect(() => {
-    // dispatch(getAllPosts());
+    dispatch(getAllPosts());
 
-    setTimeout(() => {
-      dispatch(getAllPosts());
-    }, 400);
+    // setTimeout(() => {
+    //   dispatch(getAllPosts());
+    // }, 400);
   }, [dispatch, currentUserId, posts.length]);
 
   return (
