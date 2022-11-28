@@ -20,10 +20,8 @@ const removePost = (postId) => ({
 });
 
 export const getAllPosts = () => async (dispatch) => {
-  console.log("hit posts thunk");
   const res = await jwtFetch("/api/posts/");
   const data = await res.json();
-  console.log(data, "this posts redux thiunk");
   return dispatch(receivePosts(data));
 };
 
@@ -43,7 +41,6 @@ export const getPost = (params) => async (dispatch) => {
 };
 
 export const createPost = (params) => async (dispatch) => {
-  console.log(params, "this is params");
   const { mailinglistId, title, content } = params;
   const res = await jwtFetch(`/api/mailinglists/${mailinglistId}/posts`, {
     method: "POST",
@@ -92,7 +89,6 @@ export const deletePost = (params) => async (dispatch) => {
 const postReducer = (state = { posts: [], currentPost: null }, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
-      console.log(action.posts, "THUN POST LEGIT");
       return { ...state, posts: action.posts };
     case RECEIVE_POST:
       return { ...state, currentPost: action.post };

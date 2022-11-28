@@ -39,7 +39,6 @@ const removeList = (listId) => ({
 export const getUserMailingLists = () => async (dispatch) => {
   const res = await jwtFetch("/api/mailinglists/home");
   const data = await res.json();
-  console.log(data, "this is mailing list data");
   return dispatch(receiveLists(data));
 };
 
@@ -51,7 +50,6 @@ export const getMailingList = (mailingListId) => async (dispatch) => {
 
 export const createMailingList = (params) => async (dispatch) => {
   const { name, ownerId, emails } = params;
-  console.log(emails, "emails is this");
   const res = await jwtFetch("/api/mailinglists/", {
     method: "POST",
     body: JSON.stringify({
@@ -60,10 +58,8 @@ export const createMailingList = (params) => async (dispatch) => {
       emails: emails,
     }),
   });
-  console.log("hi");
   const data2 = await res.clone();
   const data = await res.json();
-  console.log(data, data2, "data and data2");
   // return dispatch(createList(data));
   dispatch(getUserMailingLists());
   return data2;

@@ -1,6 +1,5 @@
 # [Mailme Live](https://mailmeaa.herokuapp.com/)
 
-
 # Technologies
 
 ## [Nodemailer](https://nodemailer.com/about/) is a module for Node.js applications to allow email sending
@@ -103,6 +102,53 @@ const handleTutorial = (e) => {
     return history.push("/");
   }, 200);
 };
+```
+
+When start tutorial is clicked, it sets the key "show" to true which then displays the onboarding tutorial on specific class name of a element you want to show.
+Before starting the onboarding tutorial, we used setTimeout to wait until everything is rendered then set the key "show" to false after the tutorial steps are finished.
+
+```javascript
+let intro = introJs();
+intro.setOptions({
+  steps: [
+    {
+      element: ".list-name",
+      intro: "This is the mailing list name",
+      position: "bottom",
+    },
+    {
+      element: ".list-number-emails",
+      intro: "This is number of emails/subscribers in the mailing list",
+      position: "bottom",
+    },
+    {
+      element: ".number-of-emails-sent-out",
+      intro: "This is number of emails sent out",
+      position: "bottom",
+    },
+    {
+      element: ".delete-list-tutorial",
+      intro: "To delete a specific list",
+      position: "bottom",
+    },
+    {
+      element: ".create-new-mailing-list",
+      intro: "This is to create a new mailing list",
+      position: "bottom",
+    },
+    {
+      element: ".search-container",
+      intro: "This is to search mailing list",
+    },
+  ],
+});
+setTimeout(() => {
+  if (localStorage.getItem("show") === "true") {
+    intro.start();
+  }
+  localStorage.setItem("show", false);
+  localStorage.setItem("show2", true);
+}, 500);
 ```
 
 # Featured Code

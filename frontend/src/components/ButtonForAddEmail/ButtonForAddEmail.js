@@ -26,17 +26,9 @@ function ButtonForAddEmail({ onClose }) {
   );
   const ref = useRef(null);
 
-  // console.log(currentMailingList, " this is current mailing List");
   const addSubscriberSubmit = (e) => {
     e.preventDefault();
-    console.log("email created");
-    // add onClose later
-    // let params = {
-    //     mailingListId: // this would be the id ,
-    //     email,
-    //     content: body
-    // }
-    // dispatch(createPost(params))
+
     let obj = {
       mailinglistId: currentMailingList._id,
       name: currentMailingList.name,
@@ -45,8 +37,6 @@ function ButtonForAddEmail({ onClose }) {
     dispatch(updateMailingList(obj))
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "this is data");
-
         onClose();
         toast({
           title: `User added!`,
@@ -58,24 +48,9 @@ function ButtonForAddEmail({ onClose }) {
         });
       });
   };
-  // localStorage.setItem("show", true);
+
   useEffect(() => {
-    //   if (localStorage.getItem("show") === "true") {
-    //     introJs()
-    //       .setOptions({
-    //         steps: [
-    //           {
-    //             element: document.querySelector(".addSubscriber"),
-    //             intro: "This is to add subsciber/email into the mailing list",
-    //             position: "bottom",
-    //           },
-    //         ],
-    //       })
-    //       .start();
-    //     localStorage.setItem("show", false);
-    //   }
     ref.current.focus();
-    console.log(ref.current, "LOOK ME MA");
   }, []);
 
   return (
@@ -84,14 +59,6 @@ function ButtonForAddEmail({ onClose }) {
         <Heading mt={3} fontSize="2xl">
           Add a subscriber to {currentMailingList.name}
         </Heading>
-        {/* <FormLabel>
-          <Input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
-            placeholder="Enter Emails"
-          />
-        </FormLabel> */}
         <FormLabel>
           <Input
             mt={5}

@@ -25,6 +25,7 @@
     "node": "16.x"
   },
   "dependencies": {
-    "node-cron": "^3.0.2"
+    "node-cron": "^3.0.2",
+    "react-input-calendar": "^0.5.4"
   }
 }

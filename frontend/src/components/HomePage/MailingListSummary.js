@@ -30,37 +30,14 @@ const MailingListSummary = ({ mailingLists }) => {
   const location = useLocation();
   const history = useHistory();
 
-  // const steps = [
-  //   {
-  //     element: ".list-name",
-  //     intro: "This is the mailing list name",
-  //     position: "bottom",
-  //   },
-  //   {
-  //     element: ".list-number-emails",
-  //     intro: "This is number of emails/subscribers in the mailing list",
-  //     position: "bottom",
-  //   },
-  //   {
-  //     element: ".number-of-emails-sent-out",
-  //     intro: "This is number of emails sent out",
-  //     position: "bottom",
-  //   },
-  //   {
-  //     element: ".create-new-mailing-list",
-  //     intro: "This is to create a new mailing list",
-  //     position: "bottom",
-  //   },
-  // ];
-  // const onExit = () => {
-  //   // setEnabled(false);
-  //   localStorage.setItem("show", false);
-  //   localStorage.setItem("show2", true);
-  //   // localStorage.setItem("show3", true);
-  // };
   let intro = introJs();
   intro.setOptions({
     steps: [
+      // {
+      //   element: ".recentPostsTutorial",
+      //   intro: "These are recent posts that were made",
+      //   position: "bottom",
+      // },
       {
         element: ".list-name",
         intro: "This is the mailing list name",
@@ -77,9 +54,18 @@ const MailingListSummary = ({ mailingLists }) => {
         position: "bottom",
       },
       {
+        element: ".delete-list-tutorial",
+        intro: "To delete a specific list",
+        position: "bottom",
+      },
+      {
         element: ".create-new-mailing-list",
         intro: "This is to create a new mailing list",
         position: "bottom",
+      },
+      {
+        element: ".search-container",
+        intro: "This is to search mailing list",
       },
     ],
   });
@@ -92,9 +78,6 @@ const MailingListSummary = ({ mailingLists }) => {
   }, 500);
   let postsCountArray = useSelector((state) => state.posts.posts);
   if (!Array.isArray(postsCountArray)) postsCountArray = [postsCountArray];
-  console.log(postsCountArray, "length");
-  console.log(location, "location");
-  console.log(mailingLists, "this is mailingLists");
 
   useEffect(() => {
     dispatch({
@@ -109,7 +92,6 @@ const MailingListSummary = ({ mailingLists }) => {
       </Heading>
       <TableContainer>
         <Table variant="striped" colorScheme="yellow">
-          {/* <TableCaption>Isaac</TableCaption> */}
           <Thead>
             <Tr>
               <Th>Mailing List Name</Th>
@@ -136,11 +118,8 @@ const MailingListSummary = ({ mailingLists }) => {
                         : null
                     }
                   >
-                    <Td>
+                    <Td className="list-name">
                       <Box
-                        // as={Link}
-                        // to={`/mailingList/${list._id}`}
-                        className="list-name"
                         _hover={{
                           color: "red",
                         }}
@@ -177,12 +156,9 @@ const MailingListSummary = ({ mailingLists }) => {
                             .length}
                       </Td>
                     ) : null}
-                    {/* <Td>10</Td> */}
 
                     {location.pathname === "/" ? (
-                      <Td isNumeric>
-                        {/* is numeric makes it text align right */}
-
+                      <Td className="delete-list-tutorial" isNumeric>
                         <ConfirmMailingListDelete list={list} />
                       </Td>
                     ) : null}
@@ -192,16 +168,6 @@ const MailingListSummary = ({ mailingLists }) => {
           </Tbody>
         </Table>
       </TableContainer>
-      {/* {localStorage.getItem("show") === "true" ? (
-        <Steps
-          enabled={localStorage.getItem("show")}
-          steps={steps}
-          initialStep={0}
-          onExit={onExit}
-        />
-      ) : (
-        <div></div>
-      )} */}
     </>
   );
 };

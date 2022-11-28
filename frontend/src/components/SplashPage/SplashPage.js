@@ -8,11 +8,10 @@ import LogoSplashPage from "./LogoSplashPage";
 
 import "./SplashPage.css";
 function SplashPage() {
-  // const [show, setShow] = useState(false);
   const history = useHistory();
   const handleSkipTutorial = (e) => {
     e.preventDefault();
-    // setShow(false);
+
     localStorage.setItem("show", false);
     setTimeout(() => {
       return history.push("/");
@@ -20,7 +19,7 @@ function SplashPage() {
   };
   const handleTutorial = (e) => {
     e.preventDefault();
-    // setShow(true);
+
     localStorage.setItem("show", true);
     localStorage.setItem("show3", true);
     setTimeout(() => {

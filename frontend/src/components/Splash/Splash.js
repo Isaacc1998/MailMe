@@ -28,7 +28,7 @@ function Splash() {
               <MenuButton
                 as={Button}
                 backgroundColor={"white"}
-                _hover={{ bg: "cyan.200" }}
+                _hover={{ bg: "yellow.200" }}
                 rightIcon={<ChevronDownIcon />}
               >
                 William Chan
@@ -80,7 +80,7 @@ function Splash() {
               <MenuButton
                 as={Button}
                 backgroundColor={"white"}
-                _hover={{ bg: "cyan.200" }}
+                _hover={{ bg: "yellow.200" }}
                 rightIcon={<ChevronDownIcon />}
               >
                 Isaac Choi
@@ -132,7 +132,7 @@ function Splash() {
               <MenuButton
                 as={Button}
                 backgroundColor={"white"}
-                _hover={{ bg: "cyan.200" }}
+                _hover={{ bg: "yellow.200" }}
                 rightIcon={<ChevronDownIcon />}
               >
                 Shawn Mallon
@@ -184,7 +184,7 @@ function Splash() {
               <MenuButton
                 as={Button}
                 backgroundColor={"white"}
-                _hover={{ bg: "cyan.200" }}
+                _hover={{ bg: "yellow.200" }}
                 rightIcon={<ChevronDownIcon />}
               >
                 Kyungmin Lee
