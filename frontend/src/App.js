@@ -16,8 +16,8 @@ function App() {
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
   const hasUser = useSelector((state) => !!state.session.user);
-  console.log(hasUser, "has user");
-  console.log(load, "has load");
+  // console.log(hasUser, "has user");
+  // console.log(load, "has load");
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoad(true));
   }, [dispatch]);
