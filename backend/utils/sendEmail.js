@@ -2,9 +2,12 @@ const nodemailer = require("nodemailer")
 var cron = require('node-cron');
 
 const sendEmail = async (subject, message, to, from, time) => {
+    let poolBoolean = false
+    if (to.length > 1) poolBoolean = true 
     const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.HOST_PORT,
+        pool: poolBoolean,
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
@@ -28,9 +31,10 @@ const sendEmail = async (subject, message, to, from, time) => {
     cron.schedule(`${time}`, () => {
         transporter.sendMail(options, function(err, info) {
             err
-             ? console.log(err) : console.log(info)
-        })
-    })
+             ? console.log(err) : console.log(info);
+             if (poolBoolean) transporter.close() 
+        })  
+   })
 }
 
 module.exports = sendEmail
