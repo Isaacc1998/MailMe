@@ -5,6 +5,7 @@ import {
   Select,
   Textarea,
   Heading,
+  useToast,
 } from "@chakra-ui/react";
 import jwtFetch from "../../store/jwt";
 import { useState } from "react";
@@ -24,6 +25,7 @@ function CreateEmailForm({ onClose }) {
   const [hour, setHour] = useState("*");
   const [dayOfMonth, setDayOfMonth] = useState("*");
   const [month, setMonth] = useState("*");
+  const toast = useToast();
   const dispatch = useDispatch();
   const currentList = useSelector(
     (state) => state.mailingLists.currentMailingList
@@ -50,6 +52,14 @@ function CreateEmailForm({ onClose }) {
     await jwtFetch("/api/mail/sendmail", {
       method: "POST",
       body: JSON.stringify({ body, addresses, title, time }),
+    });
+    toast({
+      title: `Email has been sent!`,
+      position: "bottom",
+
+      status: "success",
+      duration: 3000,
+      isClosable: true,
     });
     return dispatch(
       createPost({
