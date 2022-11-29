@@ -58,7 +58,7 @@ function CreateEmailForm({ onClose }) {
       position: "bottom",
 
       status: "success",
-      duration: 3000,
+      duration: 6000,
       isClosable: true,
     });
     return dispatch(
