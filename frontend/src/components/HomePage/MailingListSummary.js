@@ -40,14 +40,21 @@ const MailingListSummary = ({ mailingLists }) => {
   }, []);
   let intro = introJs();
   intro.setOption("scrollToElement", false);
+  intro.onbeforechange(function () {
+    if (this._introItems[this._currentStep].preChange) {
+      this._introItems[this._currentStep].preChange();
+    }
+  });
   intro
     .setOptions({
       disableInteraction: true,
       steps: [
         {
-          element: document.getElementsByClassName("recent-post")[0],
           intro: "These are recent posts that were made",
-          position: "bottom",
+          preChange: function () {
+            this.element = document.querySelectorAll(".recent-post")[0];
+            this.position = "bottom";
+          },
         },
         {
           element: ".list-name",
@@ -94,20 +101,20 @@ const MailingListSummary = ({ mailingLists }) => {
       }
     });
 
-  useEffect(() => {
-    if (firstPost) {
-      if (localStorage.getItem("show") === "true") {
-        intro.start();
-      }
-      localStorage.setItem("show", false);
-    }
-  }, [firstPost]);
+  // useEffect(() => {
+  //   if (firstPost) {
+  //     if (localStorage.getItem("show") === "true") {
+  //       intro.start();
+  //     }
+  //     localStorage.setItem("show", false);
+  //   }
+  // }, [firstPost]);
 
   setTimeout(() => {
-    // if (localStorage.getItem("show") === "true") {
-    //   intro.start();
-    // }
-    // localStorage.setItem("show", false);
+    if (localStorage.getItem("show") === "true") {
+      intro.start();
+    }
+    localStorage.setItem("show", false);
     localStorage.setItem("show2", true);
   }, 500);
   let postsCountArray = useSelector((state) => state.posts.posts);
