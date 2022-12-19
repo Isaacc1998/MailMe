@@ -34,10 +34,10 @@ function NavBar() {
   const [searchTerm, setSearchTerm] = useState();
   const [searchList, setSearchList] = useState([]);
   const location = useLocation();
-  let header = true;
-  if (location.pathname === "/") {
-    header = false;
-  }
+  // let header = true;
+  // if (location.pathname === "/") {
+  //   // header = false;
+  // }
 
   useEffect(() => {
     dispatch(getUserMailingLists());
@@ -97,15 +97,9 @@ function NavBar() {
           <Box ml="auto" pr="70px" mt={5} mr="0px"></Box>
         </Box>
         <div className="top-right-home-container">
-          {header ? (
-            <Link to="/">
-              <MailMeLogo />
-            </Link>
-          ) : (
-            <Heading sx={{ marginLeft: "1%" }} mb={6}>
-              Recent Posts
-            </Heading>
-          )}
+          <Link to="/">
+            <MailMeLogo />
+          </Link>
 
           <Box>
             <Button
