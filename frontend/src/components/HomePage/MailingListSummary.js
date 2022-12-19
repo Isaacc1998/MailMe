@@ -24,56 +24,90 @@ import { Steps } from "intro.js-react";
 
 import introJs from "intro.js";
 import "./CustomIntrojs.css";
+import { useState } from "react";
 
 const MailingListSummary = ({ mailingLists }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+  const [firstPost, setFirstPost] = useState();
 
-  let intro = introJs();
-  intro.setOptions({
-    steps: [
-      // {
-      //   element: ".recentPostsTutorial",
-      //   intro: "These are recent posts that were made",
-      //   position: "bottom",
-      // },
-      {
-        element: ".list-name",
-        intro: "This is the mailing list name",
-        position: "bottom",
-      },
-      {
-        element: ".list-number-emails",
-        intro: "This is number of emails/subscribers in the mailing list",
-        position: "bottom",
-      },
-      {
-        element: ".number-of-emails-sent-out",
-        intro: "This is number of emails sent out",
-        position: "bottom",
-      },
-      {
-        element: ".delete-list-tutorial",
-        intro: "To delete a specific list",
-        position: "bottom",
-      },
-      {
-        element: ".create-new-mailing-list",
-        intro: "This is to create a new mailing list",
-        position: "bottom",
-      },
-      {
-        element: ".search-container",
-        intro: "This is to search mailing list",
-      },
-    ],
-  });
-  setTimeout(() => {
-    if (localStorage.getItem("show") === "true") {
-      intro.start();
+  useEffect(() => {
+    let posts = document.getElementsByClassName("recent-post");
+    if (posts[0]) {
+      setFirstPost(posts[0].id);
     }
-    localStorage.setItem("show", false);
+  }, []);
+  let intro = introJs();
+  intro.setOption("scrollToElement", false);
+  intro
+    .setOptions({
+      disableInteraction: true,
+      steps: [
+        {
+          element: document.getElementsByClassName("recent-post")[0],
+          intro: "These are recent posts that were made",
+          position: "bottom",
+        },
+        {
+          element: ".list-name",
+          intro: "This is the mailing list name",
+          position: "bottom",
+        },
+        {
+          element: ".list-number-emails",
+          intro: "This is number of emails/subscribers in the mailing list",
+          position: "bottom",
+        },
+        {
+          element: ".number-of-emails-sent-out",
+          intro: "This is number of emails sent out",
+          position: "bottom",
+        },
+        {
+          element: ".delete-list-tutorial",
+          intro: "To delete a specific list",
+          position: "bottom",
+        },
+        {
+          element: ".create-new-mailing-list",
+          intro: "This is to create a new mailing list",
+          position: "bottom",
+        },
+        {
+          element: ".search-container",
+          intro: "This is to search mailing list",
+        },
+        {
+          element: ".mailing-list-row",
+          intro: "Click on a mailing list row to enter",
+          position: "bottom",
+        },
+      ],
+    })
+    .oncomplete(() => {
+      let list = document.getElementsByClassName("mailing-list-row");
+      let listId;
+      if (list[0]) {
+        listId = list[0].id;
+        history.push(`/mailingList/${listId}`);
+      }
+    });
+
+  useEffect(() => {
+    if (firstPost) {
+      if (localStorage.getItem("show") === "true") {
+        intro.start();
+      }
+      localStorage.setItem("show", false);
+    }
+  }, [firstPost]);
+
+  setTimeout(() => {
+    // if (localStorage.getItem("show") === "true") {
+    //   intro.start();
+    // }
+    // localStorage.setItem("show", false);
     localStorage.setItem("show2", true);
   }, 500);
   let postsCountArray = useSelector((state) => state.posts.posts);
@@ -106,6 +140,8 @@ const MailingListSummary = ({ mailingLists }) => {
               mailingLists.map((list) => {
                 return (
                   <Tr
+                    id={`${list._id}`}
+                    className="mailing-list-row"
                     onClick={() => {
                       history.push(`/mailingList/${list._id}`);
                     }}
