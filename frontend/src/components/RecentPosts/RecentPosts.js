@@ -29,13 +29,15 @@ const RecentPosts = () => {
     //   dispatch(getAllPosts());
     // }, 400);
   }, [dispatch, currentUserId, posts.length]);
-
+  // console.log(filteredPosts, "posts");
   return (
     <>
       <Box className="recentPostsTutorial" mt={4}>
         {filteredPosts.length > 0 &&
           filteredPosts.map((pst) => (
             <Box
+              id={`${pst._id}`}
+              className="recent-post"
               shadow="lg"
               p={10}
               mb={5}
