@@ -9,7 +9,7 @@
 Email data is gathered via form; Inside of CreateEmailForm.js
 handleSend will dispatch a thunk request to /sendmail. The gathered data from the form is stored inside the body of the request.
 
-```
+```javascript
 const handleSend = async (e) => {
     e.preventDefault();
     let time = `${seconds} ${minutes} ${hour} ${dayOfMonth} ${month} *`
@@ -28,7 +28,7 @@ const handleSend = async (e) => {
   };
 ```
 /sendmail will return a promise of sendEmail containing the data based from CreateEmailForm.js
-```
+```javascript
 router.post("/sendmail", cors(), async (req, res) => {
   const { body, addresses, title, time } = req.body;
   try {
@@ -46,7 +46,7 @@ router.post("/sendmail", cors(), async (req, res) => {
 sendEmail will first create the transporter; which acts as the transfer agent using an SMTP(Simple Mail Transfer Protocol) port.
 The options object represents the contents of the email itself, and who it will be sent to.
 Once these are created, you can envoke the built in method "sendMail" on the transporter, passing options as an argument. 
-```
+```javascript
 const sendEmail = async (subject, message, to, from, time) => {
     const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
