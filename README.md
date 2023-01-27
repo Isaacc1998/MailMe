@@ -1,4 +1,4 @@
-# [Mailme Live](https://mailmeaa.herokuapp.com/)
+# [Mailme (Live Link)](https://mailmeaa.herokuapp.com/)
 
 Create email lists. Send emails in bulk. Add anyone to your email list. Make email easy again. MailMe is a free alternative to Mailchimp. 
 
