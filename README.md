@@ -1,8 +1,16 @@
 # [Mailme Live](https://mailmeaa.herokuapp.com/)
 
-# Technologies
+Create email lists. Send emails in bulk. Add anyone to your email list. Make email easy again. MailMe is a free alternative to Mailchimp. 
 
-## [Nodemailer](https://nodemailer.com/about/) is a module for Node.js applications to allow email sending
+### Authors:
+- William Chan
+- Isaac Choi
+- Shawn Mallon
+- Kyungmin Lee
+
+# Example Code Snippets
+
+
 
 ### Engineer: Shawn Mallon
 
