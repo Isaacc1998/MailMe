@@ -57,11 +57,11 @@ const RecentPosts = () => {
               }}
               _hover={{
                 cursor: "pointer",
-                backgroundColor: "#fffcc6",
+                backgroundColor: "#90CDF4",
               }}
               _active={{
                 transform: "scale(0.95)",
-                backgroundColor: "#fffcc6",
+                backgroundColor: "#90CDF4",
               }}
             >
               <Heading>{pst.title}</Heading>
