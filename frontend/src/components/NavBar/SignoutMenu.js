@@ -16,9 +16,10 @@ const SignoutMenu = () => {
   return (
     <Menu autoSelect={false}>
       <MenuButton
-        sx={{ backgroundColor: "lightcoral" }}
+        sx={{ backgroundColor: "lightcoral", paddingRight: "10px" }}
         as={Button}
         leftIcon={<HamburgerIcon />}
+        rightIcon={<ChevronDownIcon />}
         _active={{
           backgroundColor: "lightcoral",
         }}
