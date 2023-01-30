@@ -52,7 +52,9 @@ export const getCurrentUser = () => async (dispatch) => {
   const res = await jwtFetch("/api/users/current");
   const user = await res.json();
   dispatch(receiveCurrentUser(user));
-  return user._id;
+  if (user) {
+    return user._id;
+  }
 };
 
 const nullErrors = null;
