@@ -18,7 +18,8 @@ function SignupFormModal() {
   return (
     <>
       <Button
-        width={280}
+        // width={280}
+        sx={{ width: "20vw" }}
         colorScheme="white"
         textColor="black"
         className="signup-button-for-splash"
