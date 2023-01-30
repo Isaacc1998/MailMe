@@ -109,7 +109,7 @@ function NavBar() {
                 history.go(-1);
               }}
             >
-              <ArrowBackIcon fontSize={25} />
+              <ArrowBackIcon fontSize={25} color="lightblue" />
             </Button>
             <Button
               sx={{ backgroundColor: "white" }}
@@ -117,7 +117,7 @@ function NavBar() {
                 history.go(1);
               }}
             >
-              <ArrowForwardIcon fontSize={25} />
+              <ArrowForwardIcon fontSize={25} color="lightblue" />
             </Button>
           </Box>
 

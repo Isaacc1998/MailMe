@@ -13,7 +13,7 @@
   position: fixed;
   overflow-y: scroll;
   max-height: 100%;
-  background-color: white;
+  background-color: #f7fafc;
   border-right: 1px solid black;
   padding: 20px;
   padding-top: 140px;
@@ -24,7 +24,7 @@
   /* this  */
   height: 100vh;
   padding: 20px;
-
+  background-color: #f7fafc;
   padding-top: 140px;
 }
 
