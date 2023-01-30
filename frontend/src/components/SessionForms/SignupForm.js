@@ -79,7 +79,7 @@ function SignupForm({ onClose }) {
                   mailinglistId: listId,
                   title: "Sample Mail",
                   content:
-                    "This is a message sent out to emails subscribed to 'Sample Mailing List'",
+                    "This is a message sent out to the emails subscribed to 'Sample Mailing List'",
                 })
               );
             });
