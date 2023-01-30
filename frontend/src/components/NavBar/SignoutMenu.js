@@ -19,7 +19,6 @@ const SignoutMenu = () => {
         sx={{ backgroundColor: "lightcoral" }}
         as={Button}
         leftIcon={<HamburgerIcon />}
-        rightIcon={<ChevronDownIcon />}
         _active={{
           backgroundColor: "lightcoral",
         }}
