@@ -134,7 +134,7 @@ const MailingListSummary = ({ mailingLists }) => {
         All Mailing Lists
       </Heading>
       <TableContainer>
-        <Table variant="striped" colorScheme="yellow">
+        <Table variant="striped" colorScheme="blue">
           <Thead>
             <Tr>
               <Th>Mailing List Name</Th>

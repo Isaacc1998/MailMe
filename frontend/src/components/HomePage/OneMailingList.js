@@ -180,7 +180,7 @@ const OneMailingList = () => {
         <TableContainer mb="50px">
           <Table
             variant="striped"
-            colorScheme="yellow"
+            colorScheme="blue"
             boxShadow="1px 1px 2.5px 2.5px lightgray"
           >
             {/* <TableCaption>{currentMailingList.name}</TableCaption> */}
