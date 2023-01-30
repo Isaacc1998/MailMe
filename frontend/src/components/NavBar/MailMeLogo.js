@@ -874,7 +874,7 @@ z"
         // xml:space="preserve"
       >
         <path
-          fill="#FEFFFF"
+          fill="#dbf4ff"
           opacity="1.000000"
           stroke="none"
           d="

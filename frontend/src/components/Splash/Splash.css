@@ -8,6 +8,7 @@ body {
   flex-direction: column;
   /* border: 1px solid black; */
   margin: auto 0;
+  background-color: #dbf4ff;
   height: 100vh;
 }
 .top-container {
@@ -15,7 +16,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-color: white;
+  background-color: #dbf4ff;
   justify-content: space-around;
   align-items: center;
   margin-bottom: 130px;
@@ -63,7 +64,7 @@ body {
   border-radius: 12px;
   background-color: white;
   box-shadow: 1px 1px 1.5px 1.5px lightgray;
-  padding: 7px;
+  padding: 20px;
 }
 /* .bottom-container {
   width: 100vw;
