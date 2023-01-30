@@ -33,6 +33,9 @@ const RecentPosts = () => {
   return (
     <>
       <Box className="recentPostsTutorial" mt={4}>
+        <Heading sx={{ marginLeft: "1%" }} mb={6}>
+          Recent Posts
+        </Heading>
         {filteredPosts.length > 0 &&
           filteredPosts.map((pst) => (
             <Box

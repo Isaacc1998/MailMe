@@ -104,7 +104,9 @@ const MailingListSummary = ({ mailingLists }) => {
   // useEffect(() => {
   //   if (firstPost) {
   //     if (localStorage.getItem("show") === "true") {
-  //       intro.start();
+  //       setTimeout(() => {
+  //         intro.start();
+  //       }, 500);
   //     }
   //     localStorage.setItem("show", false);
   //   }
@@ -116,7 +118,7 @@ const MailingListSummary = ({ mailingLists }) => {
     }
     localStorage.setItem("show", false);
     localStorage.setItem("show2", true);
-  }, 500);
+  }, 1000);
   let postsCountArray = useSelector((state) => state.posts.posts);
   if (!Array.isArray(postsCountArray)) postsCountArray = [postsCountArray];
 
