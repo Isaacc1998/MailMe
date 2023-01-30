@@ -24,7 +24,7 @@ const SignoutMenu = () => {
           backgroundColor: "lightcoral",
         }}
       >
-        <span style={{ marginRight: "30px" }}>
+        <span style={{ marginRight: "20px" }}>
           {currentUser && currentUser.username}
         </span>
       </MenuButton>
