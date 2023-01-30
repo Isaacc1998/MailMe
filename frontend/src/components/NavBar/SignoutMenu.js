@@ -24,7 +24,9 @@ const SignoutMenu = () => {
           backgroundColor: "lightcoral",
         }}
       >
-        {currentUser && currentUser.username}
+        <span style={{ marginRight: "30px" }}>
+          {currentUser && currentUser.username}
+        </span>
       </MenuButton>
       <MenuList bgColor="pink">
         <MenuItem
