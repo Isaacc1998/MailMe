@@ -13,7 +13,7 @@ const MailMeLogo = () => {
         // enable-background="new 0 0 500 500"
       >
         <path
-          fill="#FFFFFF"
+          fill="#dbf4ff"
           opacity="1.000000"
           stroke="none"
           d="
