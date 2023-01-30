@@ -1,5 +1,6 @@
 .login-button {
   background-color: azure;
+  cursor: pointer;
 }
 .login-button:hover {
   background-color: aquamarine;
