@@ -9,8 +9,13 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./SignupForm.css";
-
-import { signup, clearSessionErrors } from "../../store/session";
+import { createMailingList } from "../../store/mailinglist";
+import { createPost } from "../../store/posts";
+import {
+  signup,
+  clearSessionErrors,
+  getCurrentUser,
+} from "../../store/session";
 
 function SignupForm({ onClose }) {
   const [email, setEmail] = useState(
@@ -21,6 +26,7 @@ function SignupForm({ onClose }) {
   );
   const [password, setPassword] = useState("password");
   const [password2, setPassword2] = useState("password");
+  const [userId, setUserId] = useState(null);
   const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
 
@@ -57,9 +63,32 @@ function SignupForm({ onClose }) {
       username,
       password,
     };
-    dispatch(signup(user)).then((e) => {
-      if (e.errors === undefined) onClose(); // if there is NO errors, close it
-    });
+    dispatch(signup(user))
+      .then((e) => {
+        if (e.errors === undefined) {
+          dispatch(getCurrentUser()).then((id) => {
+            dispatch(
+              createMailingList({
+                name: "Sample Mailing List",
+                owner: id,
+                emails: ["example@examplemail.com"],
+              })
+            ).then((listId) => {
+              dispatch(
+                createPost({
+                  mailinglistId: listId,
+                  title: "Sample Mail",
+                  content:
+                    "This is a message sent out to emails subscribed to 'Sample Mailing List'",
+                })
+              );
+            });
+          });
+        }
+      })
+      .then((e) => {
+        if (e.errors === undefined) onClose(); // if there is NO errors, close it
+      });
   };
 
   return (

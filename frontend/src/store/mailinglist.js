@@ -58,11 +58,11 @@ export const createMailingList = (params) => async (dispatch) => {
       emails: emails,
     }),
   });
-  const data2 = await res.clone();
+  // const data2 = await res.clone();
   const data = await res.json();
   // return dispatch(createList(data));
   dispatch(getUserMailingLists());
-  return data2;
+  return data._id;
 
   //* in frontend:
   //* dispatch(createMailingList(43)).then(res => res.json()).then(data => {
