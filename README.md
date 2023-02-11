@@ -1,12 +1,14 @@
-# [Mailme (Live Link)](https://mailmeaa.herokuapp.com/)
+# [Mailme](https://mailmeaa.herokuapp.com/)
+
+[Live Demo Link](https://mailmeaa.herokuapp.com/)
 
 Create email lists. Send emails in bulk. Add anyone to your email list. Make email easy again. MailMe is a free alternative to Mailchimp. 
 
 ### Authors:
-- William Chan
-- Isaac Choi
-- Shawn Mallon
-- Kyungmin Lee
+- [William Chan](https://github.com/wc2184)
+- [Isaac Choi](https://github.com/Isaacc1998)
+- [Shawn Mallon](https://github.com/lokisk1155)
+- [Kyungmin Lee](https://github.com/KmLee7)
 
 # Example Code Snippets
 
